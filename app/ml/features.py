@@ -59,7 +59,7 @@ JUMLAH_TIKUNGAN = {
 # ---------------------------------------------------------------------------
 FITUR_PRA_NUMERIK = [
     "grid_position", "quali_position", "quali_best_sec_rel", "sprint_position",
-    "fp_best_position", "driver_starts_prev", "driver_avg_finish_prev",
+    "driver_starts_prev", "driver_avg_finish_prev",
     "driver_avg_points_prev", "driver_avg_grid_prev", "driver_dnf_rate_prev",
     "team_avg_points_prev", "circuit_len_km", "n_corners", "total_laps",
 ]
@@ -195,17 +195,11 @@ def _bangun_fitur_prabalapan() -> pd.DataFrame:
     else:
         df["sprint_position"] = np.nan
 
-    # ---- Latihan bebas: posisi terbaik FP1-FP3 ----
-    fp_path = RAW / "jolpica_practice.parquet"
-    if fp_path.exists():
-        fp = pd.read_parquet(fp_path)
-        fp["position"] = pd.to_numeric(fp["position"], errors="coerce")
-        fp_best = fp.groupby(["season", "round", "driverId"])["position"].min() \
-            .reset_index().rename(columns={"driverId": "driver_id",
-                                           "position": "fp_best_position"})
-        df = df.merge(fp_best, on=["season", "round", "driver_id"], how="left")
-    else:
-        df["fp_best_position"] = np.nan
+    # ---- Latihan bebas (FP) ----
+    # CATATAN KETERBATASAN: Jolpica tidak mendukung endpoint hasil practice
+    # ("Endpoint does not support final filter"), sehingga fitur FP tidak dapat
+    # dibentuk. "Hasil sesi sebelumnya" (Bab III) tetap tercakup oleh kualifikasi
+    # dan sprint. Fitur fp_best_position dihapus dari daftar fitur.
 
     df["grid_position"] = df["grid"]
     df["country_id"] = df["country"].map(_kode_negara_ke_id)
@@ -354,13 +348,16 @@ def _bangun_fitur_inrace(laps: pd.DataFrame, weather: pd.DataFrame,
 def _bentuk_target(df: pd.DataFrame) -> pd.DataFrame:
     """Bentuk target laps_remaining & next_compound berdasarkan stint.
 
-    Aturan (sesuai laporan subbab 2.2.7):
+    Aturan (sesuai laporan subbab 2.2.7 + 1.4):
     - Pit pada lap p mengakhiri stint; untuk lap t <= p target = p - t.
     - Setelah pit, target dihitung ulang untuk pit berikutnya.
-    - Baris tanpa pit berikutnya (stint terakhir / DNF) DIBUANG dari dataset
-      training karena tidak punya ground truth.
-    - Pit yang terjadi di lap terakhir race dianggap bukan keputusan strategi
-      dan dibuang.
+    - Baris tanpa pit berikutnya (stint terakhir / DNF) tidak punya target dan
+      tidak dipakai untuk training (tetap disimpan untuk inference).
+    - Pit di lap terakhir race dianggap bukan keputusan strategi -> dibuang.
+    - KASUS KHUSUS (subbab 1.4): pit yang terjadi di bawah RED FLAG dibuang
+      dari daftar pit (ganti ban gratis saat red flag bukan keputusan strategi).
+    - Compound berikutnya = compound VALID pertama setelah lap pit (out-lap
+      sering berstatus tidak akurat sehingga tidak selalu ada di lap p+1).
     """
     pit = pd.read_parquet(RAW / "jolpica_pitstops.parquet")
     pit = pit.rename(columns={"driverId": "driver_id"})[
@@ -373,16 +370,25 @@ def _bentuk_target(df: pd.DataFrame) -> pd.DataFrame:
 
     df = df.sort_values(["season", "round", "driver_code", "lap_number"]).reset_index(drop=True)
 
-    # compound lap berikutnya per driver-race (untuk target next_compound)
-    df["_next_compound_row"] = df.groupby(
-        ["season", "round", "driver_code"], sort=False)["current_compound"].shift(-1)
+    # Status lintasan per (season, round, lap) untuk deteksi red flag
+    status_lap = (df.drop_duplicates(["season", "round", "lap_number"])
+                  .set_index(["season", "round", "lap_number"])["track_status"]
+                  .to_dict()) if "track_status" in df.columns else {}
 
-    pit_per_driver = {(s, r, d): sorted(set(ls))
-                      for (s, r, d), ls in
-                      pit.groupby(["season", "round", "driver_id"])["pit_lap"]}
+    pit_per_driver = {}
+    n_red_flag = 0
+    for (s, r, d), ls in pit.groupby(["season", "round", "driver_id"])["pit_lap"]:
+        bersih = []
+        for p in sorted(set(ls)):
+            if status_lap.get((s, r, p), "GREEN") == "RED":
+                n_red_flag += 1  # pit saat red flag -> bukan keputusan strategi
+                continue
+            bersih.append(p)
+        pit_per_driver[(s, r, d)] = bersih
+    if n_red_flag:
+        logger.info("Pit stop di bawah red flag dibuang dari target: %d kejadian", n_red_flag)
 
     laps_rem = np.full(len(df), np.nan)
-    next_comp = np.full(len(df), None, dtype=object)
     for i in range(len(df)):
         s, r = df.at[i, "season"], df.at[i, "round"]
         d = df.at[i, "driver_id"]
@@ -393,29 +399,31 @@ def _bentuk_target(df: pd.DataFrame) -> pd.DataFrame:
         berikutnya = [p for p in pits if p >= t]
         if not berikutnya:
             continue
-        p = berikutnya[0]
-        laps_rem[i] = p - t
-        # compound sesudah pit = compound pada baris lap p (lap pit itu sendiri
-        # masih compound lama); pakai lookup per (season,round,driver,lap)
-        next_comp[i] = None  # diisi vektorisasi di bawah
+        laps_rem[i] = berikutnya[0] - t
     df["target_laps_remaining"] = laps_rem
 
-    # Isi next_compound secara vektorisasi: compound di lap p+1 (lap pertama stint baru)
-    idx = df.set_index(["season", "round", "driver_code", "lap_number"]).index
-    comp_map = dict(zip(idx, df["current_compound"]))
-    for i in range(len(df)):
-        if np.isnan(df.at[i, "target_laps_remaining"]):
-            continue
-        p = int(df.at[i, "lap_number"] + df.at[i, "target_laps_remaining"])
-        c = comp_map.get((df.at[i, "season"], df.at[i, "round"],
-                          df.at[i, "driver_code"], p + 1))
-        next_comp[i] = c if c in COMPOUNDS else None
+    # Compound berikutnya: compound VALID pertama pada lap > p per driver-race.
+    # Dibangun dari daftar (lap, compound) yang sudah terurut per driver-race.
+    next_comp = np.full(len(df), None, dtype=object)
+    for (s, r, kode), g in df.groupby(["season", "round", "driver_code"], sort=False):
+        lap_arr = g["lap_number"].to_numpy()
+        comp_arr = g["current_compound"].to_numpy()
+        urutan = np.argsort(lap_arr)
+        lap_sorted, comp_sorted = lap_arr[urutan], comp_arr[urutan]
+        for i in g.index:
+            if pd.isna(df.at[i, "target_laps_remaining"]):
+                continue
+            p = int(df.at[i, "lap_number"] + df.at[i, "target_laps_remaining"])
+            pos = np.searchsorted(lap_sorted, p, side="right")
+            for j in range(pos, len(comp_sorted)):
+                if comp_sorted[j] in COMPOUNDS:
+                    next_comp[i] = comp_sorted[j]
+                    break
     df["target_next_compound"] = next_comp
 
-    df = df.drop(columns=["_next_compound_row"], errors="ignore")
-    # Tandai baris yang punya ground truth lengkap (untuk training).
-    # Baris tanpa target (stint terakhir / DNF) TETAP disimpan di file
-    # inference agar API bisa memprediksi lap mana pun.
+    # Tandai baris dengan ground truth lengkap (untuk training).
+    # Baris tanpa target (stint terakhir / DNF / compound tak dikenal) TETAP
+    # disimpan di file inference agar API bisa memprediksi lap mana pun.
     df["has_target"] = df["target_laps_remaining"].notna() & df["target_next_compound"].notna()
     return df
 

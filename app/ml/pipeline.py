@@ -33,14 +33,24 @@ class Preprocessor:
     # ---------------- fit (HANYA data train) ----------------
     def fit(self, df_train: pd.DataFrame) -> "Preprocessor":
         for kolom in FITUR_PRA_NUMERIK:
-            self.median_pra[kolom] = float(df_train[kolom].median())
+            m = float(df_train[kolom].median())
+            # kolom yang seluruhnya NaN di train (mis. data practice tak tersedia)
+            # dinetralkan agar tidak meracuni imputasi
+            self.median_pra[kolom] = 0.0 if np.isnan(m) else m
         for kolom in FITUR_INRACE_NUMERIK:
-            self.median_inrace[kolom] = float(df_train[kolom].median())
+            m = float(df_train[kolom].median())
+            self.median_inrace[kolom] = 0.0 if np.isnan(m) else m
 
-        pra = self._isi_median(df_train, FITUR_PRA_NUMERIK, self.median_pra)
-        inrace = self._isi_median(df_train, FITUR_INRACE_NUMERIK, self.median_inrace)
+        # fit dengan NaN dibiarkan: StandardScaler mengabaikan NaN saat fit
+        pra = self._siapkan(df_train, FITUR_PRA_NUMERIK, self.median_pra, impute=False)
+        inrace = self._siapkan(df_train, FITUR_INRACE_NUMERIK, self.median_inrace,
+                               impute=False)
         self.scaler_pra.fit(pra)
         self.scaler_inrace.fit(inrace)
+        for sc in (self.scaler_pra, self.scaler_inrace):
+            sc.mean_ = np.nan_to_num(sc.mean_, nan=0.0)
+            sc.scale_ = np.nan_to_num(sc.scale_, nan=1.0)
+            sc.var_ = np.nan_to_num(sc.var_, nan=1.0)
 
         for kolom in FITUR_PRA_KATEGORIK:
             unik = sorted(df_train[kolom].astype(str).unique())
@@ -49,27 +59,36 @@ class Preprocessor:
         return self
 
     @staticmethod
-    def _isi_median(df: pd.DataFrame, kolom: list[str], median: dict[str, float]) -> np.ndarray:
+    def _siapkan(df: pd.DataFrame, kolom: list[str], median: dict[str, float],
+                 impute: bool) -> np.ndarray:
+        """Siapkan matriks numerik; isi NaN dengan median train HANYA bila impute.
+
+        XGBoost mendukung NaN secara native (missing value dipelajari arahnya),
+        sehingga jalur XGBoost memakai impute=False. Jalur LSTM (numerik padat)
+        memakai impute=True. StandardScaler mengabaikan NaN saat fit dan
+        meneruskan NaN saat transform.
+        """
         x = df[kolom].astype(float).copy()
-        for k in kolom:
-            x[k] = x[k].fillna(median[k])
+        if impute:
+            for k in kolom:
+                x[k] = x[k].fillna(median[k])
         return x.to_numpy(dtype=np.float32)
 
     # ---------------- transform ----------------
-    def transform_pra(self, df: pd.DataFrame) -> np.ndarray:
+    def transform_pra(self, df: pd.DataFrame, impute: bool = True) -> np.ndarray:
         """Fitur pra-balapan: numerik ter-scale + kode kategori."""
         x_num = self.scaler_pra.transform(
-            self._isi_median(df, FITUR_PRA_NUMERIK, self.median_pra))
+            self._siapkan(df, FITUR_PRA_NUMERIK, self.median_pra, impute))
         x_kat = np.column_stack([
             df[k].astype(str).map(self.vocab_kategorik[k]).fillna(0).to_numpy()
             for k in FITUR_PRA_KATEGORIK
         ]).astype(np.float32)
         return np.hstack([x_num, x_kat]).astype(np.float32)
 
-    def transform_inrace(self, df: pd.DataFrame) -> np.ndarray:
+    def transform_inrace(self, df: pd.DataFrame, impute: bool = True) -> np.ndarray:
         """Fitur in-race numerik ter-scale (dipakai sebagai timestep LSTM)."""
         return self.scaler_inrace.transform(
-            self._isi_median(df, FITUR_INRACE_NUMERIK, self.median_inrace)
+            self._siapkan(df, FITUR_INRACE_NUMERIK, self.median_inrace, impute)
         ).astype(np.float32)
 
     def transform_xgb_laps(self, pred: np.ndarray) -> np.ndarray:

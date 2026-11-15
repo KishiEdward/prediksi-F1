@@ -19,8 +19,9 @@ from app.config import get_settings
 
 logger = logging.getLogger(__name__)
 
-_MAKS_PERCOBAAN = 5
+_MAKS_PERCOBAAN = 8
 _BACKOFF_AWAL = 2.0  # detik; dilipatgandakan tiap gagal
+_BACKOFF_429 = 15.0  # 429 (rate limit) butuh jeda lebih panjang
 
 
 class JolpicaClient:
@@ -82,6 +83,8 @@ class JolpicaClient:
                     logger.error("Permintaan ditolak permanen (%d): %s",
                                  exc.response.status_code, url)
                     raise
+                if exc.response.status_code == 429:
+                    backoff = max(backoff, _BACKOFF_429)
                 if percobaan == _MAKS_PERCOBAAN:
                     raise
                 logger.warning("Percobaan %d/%d gagal untuk %s (%s). Tunggu %.1f detik...",

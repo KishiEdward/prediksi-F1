@@ -27,13 +27,18 @@ def fitur_xgb(df: pd.DataFrame, pre: Preprocessor) -> np.ndarray:
 
     XGBoost tidak melihat sejarah lap (model tabular), sesuai pembagian peran
     pada laporan: XGBoost untuk kondisi awal + kondisi lap saat ini.
+    Nilai NaN DIBIARKAN (XGBoost menanganinya secara native).
     """
-    return np.hstack([pre.transform_pra(df), pre.transform_inrace(df)])
+    return np.hstack([pre.transform_pra(df, impute=False),
+                      pre.transform_inrace(df, impute=False)])
 
 
 def fitur_lstm(df: pd.DataFrame, pre: Preprocessor) -> np.ndarray:
-    """Matriks fitur LSTM tunggal = hanya fitur in-race (tanpa pra-balapan)."""
-    return pre.transform_inrace(df)
+    """Matriks fitur LSTM tunggal = hanya fitur in-race (tanpa pra-balapan).
+
+    NaN diisi median train (LSTM butuh matriks numerik padat).
+    """
+    return pre.transform_inrace(df, impute=True)
 
 
 def fitur_hybrid(df: pd.DataFrame, pre: Preprocessor,
@@ -41,12 +46,12 @@ def fitur_hybrid(df: pd.DataFrame, pre: Preprocessor,
     """Matriks fitur hybrid = in-race + pra-balapan + estimasi awal XGBoost.
 
     Mekanisme integrasi (disetujui pada rencana): estimasi XGBoost ditempel
-    sebagai fitur tambahan pada SETIAP timestep LSTM.
+    sebagai fitur tambahan pada SETIAP timestep LSTM. NaN diisi median train.
     """
     laps_scaled = pre.transform_xgb_laps(xgb_pred_laps)
     return np.hstack([
-        pre.transform_pra(df),
-        pre.transform_inrace(df),
+        pre.transform_pra(df, impute=True),
+        pre.transform_inrace(df, impute=True),
         laps_scaled,
         xgb_proba.astype(np.float32),
     ])

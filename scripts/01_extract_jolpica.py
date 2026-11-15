@@ -99,33 +99,11 @@ def main() -> None:
         pd.concat(semua, ignore_index=True).to_parquet(RAW / f"jolpica_{endpoint}.parquet")
         logger.info("%s: total %d baris", endpoint, sum(len(d) for d in semua))
 
-    # 4) Hasil latihan bebas (FP1-FP3) per round -> fitur "hasil sesi sebelumnya".
-    # Tidak semua round punya FP3 (format 2021 / akhir pekan sprint), jadi
-    # sesi yang kosong atau error dilewati saja.
-    semua_fp = []
-    for musim in s.seasons:
-        races = client.get_semua_halaman(f"{musim}.json", ["RaceTable", "Races"])
-        for r in races:
-            for fp in (1, 2, 3):
-                try:
-                    rows = client.get_semua_halaman(
-                        f"{musim}/{r['round']}/practice{fp}.json",
-                        ["RaceTable"])
-                except Exception as exc:
-                    logger.warning("FP%d %s round %s tidak tersedia: %s",
-                                   fp, musim, r["round"], exc)
-                    continue
-                for item in rows:
-                    semua_fp.append({
-                        "season": int(r["season"]), "round": int(r["round"]),
-                        "session": f"FP{fp}",
-                        "position": item.get("position"),
-                        "driverId": item.get("Driver", {}).get("driverId"),
-                        "time": item.get("Time", {}).get("time")
-                        if isinstance(item.get("Time"), dict) else item.get("time"),
-                    })
-        logger.info("practice %d: total sementara %d baris", musim, len(semua_fp))
-    pd.DataFrame(semua_fp).to_parquet(RAW / "jolpica_practice.parquet")
+    # 4) Latihan bebas (FP1-FP3): TIDAK DIEKSTRAK.
+    # Jolpica menolak endpoint practice ("Endpoint does not support final
+    # filter"), sehingga hasil FP tidak tersedia dari sumber data penelitian.
+    # "Hasil sesi sebelumnya" tetap tercakup oleh kualifikasi + sprint.
+    # Dicatat sebagai keterbatasan data (lihat README).
 
     # 5) Referensi circuits (statis lintas musim)
     circuits = client.get_semua_halaman("circuits.json", ["CircuitTable", "Circuits"])
