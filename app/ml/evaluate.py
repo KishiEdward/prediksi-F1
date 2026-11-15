@@ -196,6 +196,47 @@ def cetak_ringkasan(nama_split: str, hasil: dict) -> None:
         _cetak_confusion(m["compound"]["confusion_matrix"], model)
 
 
+def _agregat_per_seed(per_seed: dict) -> dict:
+    """Hitung mean ± std antar-seed untuk tiap tipe model & metrik skalar."""
+    tipe_list = [t for t in ("xgboost", "lstm", "hybrid")
+                 if all(t in h for h in per_seed.values())]
+    out = {}
+    for tipe in tipe_list:
+        agg = {}
+        for kelompok in ("laps_remaining", "compound"):
+            kunci = [k for k, v in per_seed[list(per_seed)[0]][tipe][kelompok].items()
+                     if isinstance(v, (int, float))]
+            for k in kunci:
+                nilai = [h[tipe][kelompok][k] for h in per_seed.values()]
+                agg[f"{kelompok}.{k}_mean"] = round(float(np.mean(nilai)), 4)
+                agg[f"{kelompok}.{k}_std"] = round(float(np.std(nilai)), 4)
+        # F1 per kelas (mean±std antar seed)
+        kelas = COMPOUNDS
+        for c in kelas:
+            f1s = [h[tipe]["compound"]["per_kelas"][c]["f1"] for h in per_seed.values()]
+            agg[f"f1_{c}_mean"] = round(float(np.mean(f1s)), 4)
+            agg[f"f1_{c}_std"] = round(float(np.std(f1s)), 4)
+        out[tipe] = agg
+    return out
+
+
+def _cetak_mean_std(nama: str, agg: dict, n_seed: int) -> None:
+    print(f"\n=== {nama} — mean ± std antar {n_seed} seed ===")
+    print(f"{'model':<12}{'MAE':>16}{'RMSE':>16}{'±1lap':>15}{'±3lap':>15}"
+          f"{'±5lap':>15}{'acc':>15}{'F1-makro':>16}")
+    for tipe, a in agg.items():
+        def ms(k1: str, k2: str, pct: bool = False) -> str:
+            m, s = a[f"{k1}.{k2}_mean"], a[f"{k1}.{k2}_std"]
+            if pct:
+                return f"{m:.1%}±{s:.1%}"
+            return f"{m:.2f}±{s:.2f}"
+        print(f"{tipe:<12}{ms('laps_remaining','mae'):>16}{ms('laps_remaining','rmse'):>16}"
+              f"{ms('laps_remaining','dalam_1_lap',True):>15}"
+              f"{ms('laps_remaining','dalam_3_lap',True):>15}"
+              f"{ms('laps_remaining','dalam_5_lap',True):>15}"
+              f"{ms('compound','accuracy',True):>15}{ms('compound','f1_macro'):>16}")
+
+
 def main() -> None:
     setup_logging()
     s = get_settings()
@@ -206,24 +247,46 @@ def main() -> None:
 
     keluaran: dict = {"evaluated_at": datetime.now(timezone.utc).isoformat()}
 
-    # ---------- RUN 2 (model class-weighted, artefak pilihan selection.json) ----------
+    # ---------- RUN 2: SEMUA seed dievaluasi (val & test), seleksi dari VAL ----------
+    # Aturan (ditetapkan sebelum run): pemilihan model/seed HANYA dari val
+    # (selection.json hasil training). Test dievaluasi SEKALI untuk semua seed
+    # dan dilaporkan mean±std; TIDAK ADA pemilihan ulang berdasarkan test.
     sel_path = md / "selection.json"
+    seeds = [42, 43, 44]
+    primary, artifacts = "lstm", {}
     if sel_path.exists():
         sel = json.loads(sel_path.read_text())
-        art = sel["artifacts"]
-        smap = {"xgboost": art["xgboost"], "lstm": art["lstm"], "hybrid": art["hybrid"],
-                "pre_xgb": art["xgboost"], "pre_lstm": art["lstm"],
-                "pre_hybrid": art["hybrid"]}
-        keluaran["run2_primary_model"] = sel["primary_model"]
-        keluaran["run2_artifacts"] = art
-    else:
-        smap = None
-    keluaran["run2"] = {
-        "val": evaluasi_satu_split(d_val, md, suffix_map=smap),
-        "test": evaluasi_satu_split(d_test, md, suffix_map=smap),
-    }
-    cetak_ringkasan("RUN 2 — VAL 2024", keluaran["run2"]["val"])
-    cetak_ringkasan("RUN 2 — TEST 2025 (evaluasi sekali, akhir)", keluaran["run2"]["test"])
+        seeds = sel.get("seeds", seeds)
+        primary = sel.get("primary_model", primary)
+        artifacts = sel.get("artifacts", {})
+        keluaran["run2_primary_model"] = primary
+        keluaran["run2_artifacts"] = artifacts
+        keluaran["run2_kriteria"] = sel.get("kriteria")
+    seed_terpilih = int(artifacts.get(primary, "_s42").replace("_s", "")) if artifacts else seeds[0]
+    keluaran["run2_seed_terpilih_dari_val"] = seed_terpilih
+
+    run2: dict = {}
+    for nama_split, d_split in (("val", d_val), ("test", d_test)):
+        per_seed = {}
+        for i, seed in enumerate(seeds):
+            smap = {k: f"_s{seed}" for k in
+                    ("xgboost", "lstm", "hybrid", "pre_xgb", "pre_lstm", "pre_hybrid")}
+            per_seed[str(seed)] = evaluasi_satu_split(
+                d_split, md, suffix_map=smap, dengan_baseline=(i == 0))
+        baseline = {k: v for k, v in per_seed[str(seeds[0])].items()
+                    if k.startswith("baseline")}
+        agg = _agregat_per_seed({k: v for k, v in per_seed.items()})
+        run2[nama_split] = {"per_seed": per_seed, "mean_std": agg,
+                            "baselines": baseline,
+                            "model_terpilih_detail": per_seed[str(seed_terpilih)]}
+        if nama_split == "test":
+            cetak_ringkasan(f"RUN 2 — TEST 2025 seed {seed_terpilih} "
+                            f"(seed dipilih dari VAL; test sekali evaluasi)",
+                            per_seed[str(seed_terpilih)])
+            _cetak_mean_std("RUN 2 — TEST 2025 semua seed", agg, len(seeds))
+        else:
+            _cetak_mean_std("RUN 2 — VAL 2024 semua seed", agg, len(seeds))
+    keluaran["run2"] = run2
 
     # ---------- RUN 1 (backup, tanpa class weight) — metrik sama utk perbandingan ----------
     md1 = md / "run1"

@@ -39,14 +39,26 @@ class Predictor:
     def __init__(self, models_dir: Path | None = None) -> None:
         md = models_dir or get_settings().models_dir
 
-        # Tentukan model utama + suffix artefak dari selection.json
-        self.primary = "hybrid"
+        # Tentukan model utama + suffix artefak dari METADATA di models/
+        # (selection.json -> metadata.json); tipe model TIDAK di-hardcode.
+        self.primary = None
         suffix = ""
         sel_path = md / "selection.json"
+        meta_path = md / "metadata.json"
         if sel_path.exists():
             sel = json.loads(sel_path.read_text())
-            self.primary = sel.get("primary_model", "hybrid")
-            suffix = sel.get("artifacts", {}).get(self.primary, "")
+            self.primary = sel.get("primary_model")
+            suffix = sel.get("artifacts", {}).get(self.primary or "", "")
+        if self.primary is None and meta_path.exists():
+            meta = json.loads(meta_path.read_text())
+            self.primary = meta.get("primary_model")
+            suffix = meta.get("artifacts", {}).get(self.primary or "", "")
+        if self.primary is None:
+            raise ModelBelumSiapError(
+                "Tipe model final tidak ditemukan di models/ "
+                "(butuh selection.json atau metadata.json dengan 'primary_model').")
+        if self.primary not in ("lstm", "hybrid"):
+            raise ModelBelumSiapError(f"primary_model tidak dikenal: {self.primary}")
         self.suffix = suffix
 
         wajib = [md / f"preprocessor{suffix}.pkl",

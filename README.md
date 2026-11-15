@@ -159,6 +159,36 @@ python -m app.ml.evaluate
 | Lap **tidak akurat / dihapus** (in/out lap) | Dibuang dari fitur; sequence LSTM sedikit terkompresi (didokumentasikan) | Kualitas data |
 | Stint terakhir / **DNF** tanpa pit berikutnya | Disimpan untuk inference tetapi tanpa target (tidak dipakai training) | Target = pit berikutnya (subbab 2.2.7) |
 
+## 6c. Run 2 — Perubahan konfigurasi & protokol evaluasi
+
+Perubahan konfigurasi di luar 7 batasan pengguna (semua ditetapkan dari
+train/val saja; **test 2025 tidak dipakai untuk keputusan apa pun**; scaler/
+encoder/imputasi hanya di-fit pada train). Versi mesin-baca:
+`models/selection_criteria.json`.
+
+1. **Class weight**: inverse-frequency, **dibatasi maks 20** lalu dinormalisasi
+   rata-rata 1 — tanpa cap, bobot WET (84 baris) ≈ 137× dan mengganggu stabilitas.
+2. **Loss gabungan**: MSE + CrossEntropy berbobot, keseimbangan 1:1 (tidak diubah).
+3. **Gradient clipping** max-norm 5.0 (stabilitas, praktik standar).
+4. **Target TIDAK dinormalisasi**; prediksi di-clip ≥ 0 hanya saat metrik/tampilan API.
+5. **Fitur TIDAK di-clip**; StandardScaler + median imputasi fit HANYA di train;
+   jalur XGBoost membiarkan NaN (native), jalur LSTM diimputasi.
+6. **Epochs maks 40, patience 7** (early stop pada val loss gabungan).
+7. **Arsitektur/optimizer**: LSTM 1 lapis hidden 64, dropout 0.3, Adam lr 3e-4, batch 256.
+8. **Reproduksibilitas**: seed 42/43/44; shuffle per epoch pakai generator
+   `seed*1000+epoch`.
+9. **XGBoost**: 400 tree, depth 6, lr 0.05, subsample/colsample 0.9, `random_state=seed`.
+10. **Padding sequence**: riwayat < window di-pad mengulang lap pertama (edge padding).
+11. **Fitur hybrid di train**: estimasi XGBoost out-of-fold GroupKFold(5) per race.
+
+**Protokol evaluasi Run 2** (ditetapkan sebelum run):
+- Pemilihan tipe model & seed **hanya dari val 2024** (kriteria: mean F1-makro
+  tertinggi antar-seed; seri <0,010 → MAE val terendah) → `models/selection.json`.
+- **Test 2025 dievaluasi SEKALI untuk SEMUA seed** (42/43/44), dilaporkan
+  mean±std + detail seed terpilih. Tidak ada pemilihan ulang sesudahnya.
+- Run 1 (tanpa class weight, `models/run1/`) dievaluasi dengan metrik identik
+  untuk perbandingan berdampingan.
+
 ## 7. Menjalankan API
 
 ```bash
