@@ -46,20 +46,37 @@ def _timedelta_ke_detik(df: pd.DataFrame, kolom: str) -> None:
         df[kolom] = df[kolom].dt.total_seconds().astype("Float64")
 
 
-def muat_sesi_dengan_jeda(tahun: int, ronde: int):
+def _karena_rate_limit(exc: Exception) -> bool:
+    """Deteksi error yang sebenarnya disebabkan rate limit (sering terbungkus
+    pesan lain oleh fastf1, mis. 'Failed to load any schedule data')."""
+    from fastf1.req import RateLimitExceededError
+    if isinstance(exc, RateLimitExceededError):
+        return True
+    pesan = str(exc).lower()
+    return ("500 calls" in pesan or "rate limit" in pesan
+            or "schedule data" in pesan or "not been loaded" in pesan
+            or "429" in pesan)
+
+
+def muat_sesi_dengan_jeda(tahun: int, ronde: int, maks_jeda: int = 4):
     """Muat sesi; bila kena rate limit fastf1 (500 call/jam), tunggu lalu ulangi.
 
     Data yang sudah ter-cache tidak dihitung ke rate limit, jadi hanya
     unduhan baru yang mengkonsumsi kuota.
     """
-    from fastf1.req import RateLimitExceededError
+    percobaan = 0
     while True:
         try:
             return muat_sesi_race(tahun, ronde)
-        except RateLimitExceededError:
-            logger.warning("Rate limit FastF1 tercapai. Jeda %d menit lalu lanjut...",
-                           JEDA_RATE_LIMIT // 60)
-            time.sleep(JEDA_RATE_LIMIT)
+        except Exception as exc:
+            if _karena_rate_limit(exc) and percobaan < maks_jeda:
+                percobaan += 1
+                logger.warning("Rate limit FastF1 (%s). Jeda %d menit lalu lanjut "
+                               "(percobaan %d/%d)...", exc.__class__.__name__,
+                               JEDA_RATE_LIMIT // 60, percobaan, maks_jeda)
+                time.sleep(JEDA_RATE_LIMIT)
+            else:
+                raise
 
 
 def ekstrak_satu_race(tahun: int, ronde: int) -> bool:
@@ -85,28 +102,37 @@ def ekstrak_satu_race(tahun: int, ronde: int) -> bool:
     laps.insert(1, "round", ronde)
     laps.to_parquet(str(prefix) + "_laps.parquet")
 
-    # --- Weather ---
-    w = sesi.weather_data.copy()
-    _timedelta_ke_detik(w, "Time")
-    w.insert(0, "season", tahun)
-    w.insert(1, "round", ronde)
-    w.to_parquet(str(prefix) + "_weather.parquet")
+    # --- Weather (opsional: sebagian race datanya tidak tersedia) ---
+    try:
+        w = sesi.weather_data.copy()
+        _timedelta_ke_detik(w, "Time")
+        w.insert(0, "season", tahun)
+        w.insert(1, "round", ronde)
+        w.to_parquet(str(prefix) + "_weather.parquet")
+    except Exception as exc:
+        logger.warning("Weather %d round %d tidak tersedia: %s", tahun, ronde, exc)
 
-    # --- Track status ---
-    ts = sesi.track_status.copy()
-    _timedelta_ke_detik(ts, "Time")
-    ts.insert(0, "season", tahun)
-    ts.insert(1, "round", ronde)
-    ts.to_parquet(str(prefix) + "_trackstatus.parquet")
+    # --- Track status (opsional) ---
+    try:
+        ts = sesi.track_status.copy()
+        _timedelta_ke_detik(ts, "Time")
+        ts.insert(0, "season", tahun)
+        ts.insert(1, "round", ronde)
+        ts.to_parquet(str(prefix) + "_trackstatus.parquet")
+    except Exception as exc:
+        logger.warning("TrackStatus %d round %d tidak tersedia: %s", tahun, ronde, exc)
 
     # --- Pit stops FastF1 (opsional, tergantung versi) ---
-    pit = getattr(sesi, "pit_stops", None)
-    if pit is not None and len(pit) > 0:
-        p = pit.reset_index(drop=True).copy()
-        _timedelta_ke_detik(p, "duration")
-        p.insert(0, "season", tahun)
-        p.insert(1, "round", ronde)
-        p.to_parquet(str(prefix) + "_pitstops.parquet")
+    try:
+        pit = getattr(sesi, "pit_stops", None)
+        if pit is not None and len(pit) > 0:
+            p = pit.reset_index(drop=True).copy()
+            _timedelta_ke_detik(p, "duration")
+            p.insert(0, "season", tahun)
+            p.insert(1, "round", ronde)
+            p.to_parquet(str(prefix) + "_pitstops.parquet")
+    except Exception as exc:
+        logger.warning("PitStops %d round %d tidak tersedia: %s", tahun, ronde, exc)
 
     logger.info("Selesai %d round %d: %d lap", tahun, ronde, len(laps))
     return True
