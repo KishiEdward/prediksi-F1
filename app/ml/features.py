@@ -40,8 +40,11 @@ WINDOW_LAP = 5
 # Kelas compound target (label baku sesuai laporan)
 COMPOUNDS = ["SOFT", "MEDIUM", "HARD", "INTERMEDIATE", "WET"]
 
-# Pemetaan kode TrackStatus FastF1 -> label kondisi lintasan
-TRACK_STATUS_MAP = {"1": "GREEN", "2": "SC", "3": "VSC", "4": "SC", "5": "RED", "6": "OTHER"}
+# Pemetaan kode TrackStatus FastF1 -> label kondisi lintasan (kode resmi:
+# 1=AllClear/hijau, 2=Kuning, 3=Tidak diketahui, 4=Safety Car, 5=Merah,
+# 6=Virtual Safety Car, 7=Sesi berakhir)
+TRACK_STATUS_MAP = {"1": "GREEN", "2": "YELLOW", "3": "UNKNOWN", "4": "SC",
+                    "5": "RED", "6": "VSC", "7": "ENDED"}
 
 # Jumlah tikungan per sirkuit (data referensi publik; tidak tersedia di Jolpica)
 JUMLAH_TIKUNGAN = {
@@ -82,7 +85,7 @@ FITUR_INRACE_NUMERIK = [
     "lap_time_sec", "delta_prev_lap", "delta_mean3_lap", "delta_pb_so_far",
     "tyre_life", "stint_number", "fresh_tyre", "position", "position_delta_prev",
     "gap_to_leader", "gap_to_car_ahead", "race_progress", "laps_to_race_end",
-    "is_green", "is_sc", "is_vsc", "is_red", "laps_since_sc_vsc",
+    "is_green", "is_yellow", "is_sc", "is_vsc", "is_red", "laps_since_sc_vsc",
     "air_temp", "track_temp", "rainfall", "humidity",
 ] + [f"compound_{c.lower()}" for c in COMPOUNDS]
 
@@ -328,6 +331,7 @@ def _bangun_fitur_inrace(laps: pd.DataFrame, weather: pd.DataFrame,
     kode = df["TrackStatus"].astype("string").str.extract(r"(\d)")[0].fillna("1")
     df["track_status"] = kode.map(TRACK_STATUS_MAP).fillna("OTHER")
     df["is_green"] = (df["track_status"] == "GREEN").astype(float)
+    df["is_yellow"] = (df["track_status"] == "YELLOW").astype(float)
     df["is_sc"] = (df["track_status"] == "SC").astype(float)
     df["is_vsc"] = (df["track_status"] == "VSC").astype(float)
     df["is_red"] = (df["track_status"] == "RED").astype(float)
