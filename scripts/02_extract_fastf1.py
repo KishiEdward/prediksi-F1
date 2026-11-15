@@ -38,6 +38,7 @@ KOLOM_LAPS = [
 ]
 
 JEDA_RATE_LIMIT = 65 * 60  # fastf1 membatasi 500 call/jam; tunggu jendela reset
+JEDA_BLOKIR = 30 * 60      # server F1 menolak (401): tunggu lebih singkat & coba lagi
 
 
 def _timedelta_ke_detik(df: pd.DataFrame, kolom: str) -> None:
@@ -47,36 +48,61 @@ def _timedelta_ke_detik(df: pd.DataFrame, kolom: str) -> None:
 
 
 def _karena_rate_limit(exc: Exception) -> bool:
-    """Deteksi error yang sebenarnya disebabkan rate limit (sering terbungkus
-    pesan lain oleh fastf1, mis. 'Failed to load any schedule data')."""
+    """Deteksi error rate limit client fastf1 (sering terbungkus pesan lain)."""
     from fastf1.req import RateLimitExceededError
     if isinstance(exc, RateLimitExceededError):
         return True
     pesan = str(exc).lower()
     return ("500 calls" in pesan or "rate limit" in pesan
-            or "schedule data" in pesan or "not been loaded" in pesan
-            or "429" in pesan)
+            or "schedule data" in pesan or "429" in pesan)
 
 
-def muat_sesi_dengan_jeda(tahun: int, ronde: int, maks_jeda: int = 4):
-    """Muat sesi; bila kena rate limit fastf1 (500 call/jam), tunggu lalu ulangi.
+def _karena_diblokir_server(exc: Exception) -> bool:
+    """Deteksi blokir sisi server F1 (401 untuk semua request).
 
-    Data yang sudah ter-cache tidak dihitung ke rate limit, jadi hanya
-    unduhan baru yang mengkonsumsi kuota.
+    fastf1 menelan error per-request saat load() dan baru meledak sebagai
+    DataNotLoadedError ketika data diakses, jadi kedua gejala dicek di sini.
+    """
+    try:
+        from fastf1.exceptions import DataNotLoadedError
+        if isinstance(exc, DataNotLoadedError):
+            return True
+    except ImportError:
+        pass
+    pesan = str(exc).lower()
+    return "not been loaded" in pesan or "401" in pesan
+
+
+def muat_sesi_dengan_jeda(tahun: int, ronde: int, maks_jeda: int = 8):
+    """Muat sesi + verifikasi data benar-benar ter-load.
+
+    - Kena rate limit client (500 call/jam) -> jeda 65 menit, ulangi.
+    - Ditolak server (401/blokir sementara)  -> jeda 30 menit, ulangi.
+    Data yang sudah ter-cache tidak mengkonsumsi kuota.
     """
     percobaan = 0
     while True:
         try:
-            return muat_sesi_race(tahun, ronde)
+            sesi = muat_sesi_race(tahun, ronde)
+            n = len(sesi.laps)  # paksa akses: memicu DataNotLoadedError bila diblokir
+            if n == 0:
+                raise RuntimeError("laps kosong (kemungkinan diblokir server)")
+            return sesi
         except Exception as exc:
-            if _karena_rate_limit(exc) and percobaan < maks_jeda:
-                percobaan += 1
-                logger.warning("Rate limit FastF1 (%s). Jeda %d menit lalu lanjut "
-                               "(percobaan %d/%d)...", exc.__class__.__name__,
-                               JEDA_RATE_LIMIT // 60, percobaan, maks_jeda)
-                time.sleep(JEDA_RATE_LIMIT)
+            if percobaan >= maks_jeda:
+                raise
+            if _karena_rate_limit(exc):
+                lama = JEDA_RATE_LIMIT
+            elif _karena_diblokir_server(exc):
+                lama = JEDA_BLOKIR
             else:
                 raise
+            percobaan += 1
+            logger.warning("Gagal muat %d round %d (%s: %s). Jeda %d menit, "
+                           "percobaan %d/%d...", tahun, ronde,
+                           exc.__class__.__name__, str(exc)[:80],
+                           lama // 60, percobaan, maks_jeda)
+            time.sleep(lama)
 
 
 def ekstrak_satu_race(tahun: int, ronde: int) -> bool:
@@ -155,6 +181,7 @@ def main() -> None:
         try:
             if ekstrak_satu_race(tahun, ronde):
                 baru += 1
+                time.sleep(10)  # jeda antar race agar tidak burst ke server
         except Exception as exc:
             gagal += 1
             logger.error("Error %d round %d: %s", tahun, ronde, exc, exc_info=True)
