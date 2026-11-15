@@ -116,7 +116,7 @@ def prediksi_xgb_oof(df_train: pd.DataFrame, pre: Preprocessor) -> tuple[np.ndar
         clf = XGBClassifier(objective="multi:softprob", num_class=len(COMPOUNDS), **PARAM_XGB)
         clf.fit(X[tr], y_cls[tr], verbose=False)
         oof_laps[va] = reg.predict(X[va])
-        oof_proba[va] = clf.predict_proba(X[va])
+        oof_proba[va] = ds.proba_compound_full(clf, X[va])
     return oof_laps, oof_proba
 
 
@@ -225,7 +225,7 @@ def latih_nn(df_train: pd.DataFrame, df_val: pd.DataFrame, pre: Preprocessor,
         M_tr = ds.fitur_hybrid(df_train, pre, xgb_info["oof_laps"], xgb_info["oof_proba"])
         X_va_flat = ds.fitur_xgb(df_val, pre)
         M_va = ds.fitur_hybrid(df_val, pre, reg.predict(X_va_flat),
-                               clf.predict_proba(X_va_flat))
+                               ds.proba_compound_full(clf, X_va_flat))
     else:
         raise ValueError(f"mode tidak dikenal: {mode}")
 

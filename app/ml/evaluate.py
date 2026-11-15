@@ -84,7 +84,8 @@ def _prediksi_nn(mode: str, suffix: str, md: Path, d: pd.DataFrame,
         M = ds.fitur_lstm(d, pre)
     else:
         X_flat = ds.fitur_xgb(d, pre)
-        M = ds.fitur_hybrid(d, pre, xgb_reg.predict(X_flat), xgb_clf.predict_proba(X_flat))
+        M = ds.fitur_hybrid(d, pre, xgb_reg.predict(X_flat),
+                            ds.proba_compound_full(xgb_clf, X_flat))
     config = json.loads((md / f"{mode}{suffix}_config.json").read_text())
     model = muat_model(md / f"{mode}{suffix}_model.pt", config["arsitektur"])
     y_cls = ds.target_dari_df(d, pre)

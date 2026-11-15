@@ -86,6 +86,23 @@ def bangun_dataset_sequence(df: pd.DataFrame, matriks_fitur: np.ndarray,
     return X, y_reg, y_cls, df
 
 
+def proba_compound_full(clf, X: np.ndarray) -> np.ndarray:
+    """predict_proba XGBoost yang SELALU mengembalikan 5 kolom kelas.
+
+    Bila satu kelas (mis. WET) absen di data latih sebuah fold, wrapper sklearn
+    hanya mengembalikan kolom kelas yang ada — di sini dipetakan kembali ke
+    5 kolom agar bentuk fitur hybrid konsisten di training maupun inference.
+    """
+    p = clf.predict_proba(X)
+    n_kelas = len(COMPOUNDS)
+    if p.shape[1] == n_kelas:
+        return np.asarray(p, dtype=np.float32)
+    out = np.zeros((p.shape[0], n_kelas), dtype=np.float32)
+    kolom = np.asarray(getattr(clf, "classes_", np.arange(p.shape[1])), dtype=int)
+    out[:, kolom] = p
+    return out
+
+
 def target_dari_df(df: pd.DataFrame, pre: Preprocessor) -> np.ndarray:
     """Indeks kelas compound (0..4) dari kolom target."""
     return pre.encode_target_compound(df)

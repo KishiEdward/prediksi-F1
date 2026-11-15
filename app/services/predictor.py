@@ -95,7 +95,7 @@ class Predictor:
         baris_terakhir = hist.iloc[-1]
         X_flat = ds.fitur_xgb(hist, self.pre)
         laps_xgb = self.reg.predict(X_flat)
-        proba_xgb = self.clf.predict_proba(X_flat)
+        proba_xgb = ds.proba_compound_full(self.clf, X_flat)
         M = ds.fitur_hybrid(hist, self.pre, laps_xgb, proba_xgb)
 
         # Ambil maksimum `window` baris terakhir; bangun_sequences melakukan
