@@ -1,0 +1,13 @@
+.venv/
+.git/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/raw/jolpica_cache/
+data/raw/fastf1_cache/
+data/raw/fastf1/
+logs/
+.env
+tests/
+*.rar
+bab3_extract.txt

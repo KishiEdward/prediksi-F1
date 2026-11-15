@@ -63,7 +63,7 @@ starlette==1.10.0
 sympy==1.14.0
 threadpoolctl==3.8.0
 timple==0.1.8
-torch==2.15.0+cpu
+# torch diinstal terpisah (CPU-only): pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
 typing-inspection==0.4.5
 typing_extensions==4.16.0
 tzdata==2026.6

@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    container_name: f1-pit-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      # Data & model dari host (memungkinkan update tanpa rebuild image)
+      - ./data/processed:/app/data/processed:ro
+      - ./models:/app/models:ro
+    restart: unless-stopped

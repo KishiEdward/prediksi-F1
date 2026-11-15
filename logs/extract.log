@@ -862,3 +862,249 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-11-15 12:08:39 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/6/practice2.json?limit=100&offset=0
 2026-11-15 12:08:39 | WARNING | extract.jolpica | FP2 2024 round 6 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/6/practice2.json?limit=100&offset=0'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:08:41 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/6/practice3.json?limit=100&offset=0
+2026-11-15 12:08:41 | WARNING | extract.jolpica | FP3 2024 round 6 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/6/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:08:42 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/7/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:08:44 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/7/practice1.json?limit=100&offset=0
+2026-11-15 12:08:44 | WARNING | extract.jolpica | FP1 2024 round 7 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/7/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:08:45 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/7/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:08:48 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/7/practice2.json?limit=100&offset=0
+2026-11-15 12:08:48 | WARNING | extract.jolpica | FP2 2024 round 7 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/7/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:08:49 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/7/practice3.json?limit=100&offset=0
+2026-11-15 12:08:49 | WARNING | extract.jolpica | FP3 2024 round 7 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/7/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:08:50 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/8/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:08:53 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/8/practice1.json?limit=100&offset=0
+2026-11-15 12:08:53 | WARNING | extract.jolpica | FP1 2024 round 8 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/8/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:08:54 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/8/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:08:56 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/8/practice2.json?limit=100&offset=0
+2026-11-15 12:08:56 | WARNING | extract.jolpica | FP2 2024 round 8 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/8/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:08:57 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/8/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:00 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/8/practice3.json?limit=100&offset=0
+2026-11-15 12:09:00 | WARNING | extract.jolpica | FP3 2024 round 8 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/8/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:01 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/9/practice1.json?limit=100&offset=0
+2026-11-15 12:09:01 | WARNING | extract.jolpica | FP1 2024 round 9 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/9/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:02 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/9/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:04 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/9/practice2.json?limit=100&offset=0
+2026-11-15 12:09:04 | WARNING | extract.jolpica | FP2 2024 round 9 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/9/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:05 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/9/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:08 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/9/practice3.json?limit=100&offset=0
+2026-11-15 12:09:08 | WARNING | extract.jolpica | FP3 2024 round 9 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/9/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:09 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/10/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:12 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/10/practice1.json?limit=100&offset=0
+2026-11-15 12:09:12 | WARNING | extract.jolpica | FP1 2024 round 10 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/10/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:13 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/10/practice2.json?limit=100&offset=0
+2026-11-15 12:09:13 | WARNING | extract.jolpica | FP2 2024 round 10 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/10/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:14 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/10/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:17 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/10/practice3.json?limit=100&offset=0
+2026-11-15 12:09:17 | WARNING | extract.jolpica | FP3 2024 round 10 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/10/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:18 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/11/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:21 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/11/practice1.json?limit=100&offset=0
+2026-11-15 12:09:21 | WARNING | extract.jolpica | FP1 2024 round 11 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/11/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:22 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/11/practice2.json?limit=100&offset=0
+2026-11-15 12:09:22 | WARNING | extract.jolpica | FP2 2024 round 11 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/11/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:23 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/11/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:26 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/11/practice3.json?limit=100&offset=0
+2026-11-15 12:09:26 | WARNING | extract.jolpica | FP3 2024 round 11 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/11/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:27 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/12/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:29 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/12/practice1.json?limit=100&offset=0
+2026-11-15 12:09:29 | WARNING | extract.jolpica | FP1 2024 round 12 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/12/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:30 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/12/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:33 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/12/practice2.json?limit=100&offset=0
+2026-11-15 12:09:33 | WARNING | extract.jolpica | FP2 2024 round 12 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/12/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:34 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/12/practice3.json?limit=100&offset=0
+2026-11-15 12:09:34 | WARNING | extract.jolpica | FP3 2024 round 12 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/12/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:35 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/13/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:38 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/13/practice1.json?limit=100&offset=0
+2026-11-15 12:09:38 | WARNING | extract.jolpica | FP1 2024 round 13 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/13/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:39 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/13/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:41 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/13/practice2.json?limit=100&offset=0
+2026-11-15 12:09:41 | WARNING | extract.jolpica | FP2 2024 round 13 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/13/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:42 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/13/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:45 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/13/practice3.json?limit=100&offset=0
+2026-11-15 12:09:45 | WARNING | extract.jolpica | FP3 2024 round 13 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/13/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:46 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/14/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:48 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/14/practice1.json?limit=100&offset=0
+2026-11-15 12:09:48 | WARNING | extract.jolpica | FP1 2024 round 14 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/14/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:49 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/14/practice2.json?limit=100&offset=0
+2026-11-15 12:09:49 | WARNING | extract.jolpica | FP2 2024 round 14 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/14/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:50 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/14/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:53 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/14/practice3.json?limit=100&offset=0
+2026-11-15 12:09:53 | WARNING | extract.jolpica | FP3 2024 round 14 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/14/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:54 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/15/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:09:57 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/15/practice1.json?limit=100&offset=0
+2026-11-15 12:09:57 | WARNING | extract.jolpica | FP1 2024 round 15 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/15/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:09:58 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/15/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:00 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/15/practice2.json?limit=100&offset=0
+2026-11-15 12:10:00 | WARNING | extract.jolpica | FP2 2024 round 15 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/15/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:01 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/15/practice3.json?limit=100&offset=0
+2026-11-15 12:10:01 | WARNING | extract.jolpica | FP3 2024 round 15 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/15/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:02 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/16/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:05 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/16/practice1.json?limit=100&offset=0
+2026-11-15 12:10:05 | WARNING | extract.jolpica | FP1 2024 round 16 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/16/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:06 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/16/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:08 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/16/practice2.json?limit=100&offset=0
+2026-11-15 12:10:08 | WARNING | extract.jolpica | FP2 2024 round 16 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/16/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:09 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/16/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:12 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/16/practice3.json?limit=100&offset=0
+2026-11-15 12:10:12 | WARNING | extract.jolpica | FP3 2024 round 16 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/16/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:13 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/17/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:15 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/17/practice1.json?limit=100&offset=0
+2026-11-15 12:10:15 | WARNING | extract.jolpica | FP1 2024 round 17 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/17/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:16 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/17/practice2.json?limit=100&offset=0
+2026-11-15 12:10:16 | WARNING | extract.jolpica | FP2 2024 round 17 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/17/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:17 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/17/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:20 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/17/practice3.json?limit=100&offset=0
+2026-11-15 12:10:20 | WARNING | extract.jolpica | FP3 2024 round 17 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/17/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:21 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/18/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:23 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/18/practice1.json?limit=100&offset=0
+2026-11-15 12:10:23 | WARNING | extract.jolpica | FP1 2024 round 18 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/18/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:24 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/18/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:27 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/18/practice2.json?limit=100&offset=0
+2026-11-15 12:10:27 | WARNING | extract.jolpica | FP2 2024 round 18 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/18/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:28 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/18/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:31 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/18/practice3.json?limit=100&offset=0
+2026-11-15 12:10:31 | WARNING | extract.jolpica | FP3 2024 round 18 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/18/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:32 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/19/practice1.json?limit=100&offset=0
+2026-11-15 12:10:32 | WARNING | extract.jolpica | FP1 2024 round 19 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/19/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:33 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/19/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:35 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/19/practice2.json?limit=100&offset=0
+2026-11-15 12:10:35 | WARNING | extract.jolpica | FP2 2024 round 19 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/19/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:36 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/19/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:39 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/19/practice3.json?limit=100&offset=0
+2026-11-15 12:10:39 | WARNING | extract.jolpica | FP3 2024 round 19 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/19/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:40 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/20/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:42 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/20/practice1.json?limit=100&offset=0
+2026-11-15 12:10:42 | WARNING | extract.jolpica | FP1 2024 round 20 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/20/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:43 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/20/practice2.json?limit=100&offset=0
+2026-11-15 12:10:43 | WARNING | extract.jolpica | FP2 2024 round 20 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/20/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:44 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/20/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:47 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/20/practice3.json?limit=100&offset=0
+2026-11-15 12:10:47 | WARNING | extract.jolpica | FP3 2024 round 20 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/20/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:48 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/21/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:50 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/21/practice1.json?limit=100&offset=0
+2026-11-15 12:10:50 | WARNING | extract.jolpica | FP1 2024 round 21 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/21/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:51 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/21/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:54 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/21/practice2.json?limit=100&offset=0
+2026-11-15 12:10:54 | WARNING | extract.jolpica | FP2 2024 round 21 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/21/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:55 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/21/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:10:57 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/21/practice3.json?limit=100&offset=0
+2026-11-15 12:10:57 | WARNING | extract.jolpica | FP3 2024 round 21 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/21/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:58 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/22/practice1.json?limit=100&offset=0
+2026-11-15 12:10:58 | WARNING | extract.jolpica | FP1 2024 round 22 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/22/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:10:59 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/22/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:02 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/22/practice2.json?limit=100&offset=0
+2026-11-15 12:11:02 | WARNING | extract.jolpica | FP2 2024 round 22 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/22/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:03 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/22/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:06 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/22/practice3.json?limit=100&offset=0
+2026-11-15 12:11:06 | WARNING | extract.jolpica | FP3 2024 round 22 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/22/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:06 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/23/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:09 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/23/practice1.json?limit=100&offset=0
+2026-11-15 12:11:09 | WARNING | extract.jolpica | FP1 2024 round 23 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/23/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:10 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/23/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:13 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/23/practice2.json?limit=100&offset=0
+2026-11-15 12:11:13 | WARNING | extract.jolpica | FP2 2024 round 23 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/23/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:14 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/23/practice3.json?limit=100&offset=0
+2026-11-15 12:11:14 | WARNING | extract.jolpica | FP3 2024 round 23 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/23/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:15 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/24/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:17 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/24/practice1.json?limit=100&offset=0
+2026-11-15 12:11:17 | WARNING | extract.jolpica | FP1 2024 round 24 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/24/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:18 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/24/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:21 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/24/practice2.json?limit=100&offset=0
+2026-11-15 12:11:21 | WARNING | extract.jolpica | FP2 2024 round 24 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/24/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:22 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2024/24/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:24 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2024/24/practice3.json?limit=100&offset=0
+2026-11-15 12:11:24 | WARNING | extract.jolpica | FP3 2024 round 24 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2024/24/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:24 | INFO    | extract.jolpica | practice 2024: total sementara 0 baris
+2026-11-15 12:11:25 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/1/practice1.json?limit=100&offset=0
+2026-11-15 12:11:25 | WARNING | extract.jolpica | FP1 2025 round 1 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/1/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:26 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2025/1/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:29 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/1/practice2.json?limit=100&offset=0
+2026-11-15 12:11:29 | WARNING | extract.jolpica | FP2 2025 round 1 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/1/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:30 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2025/1/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:32 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/1/practice3.json?limit=100&offset=0
+2026-11-15 12:11:32 | WARNING | extract.jolpica | FP3 2025 round 1 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/1/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:33 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2025/2/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:36 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/2/practice1.json?limit=100&offset=0
+2026-11-15 12:11:36 | WARNING | extract.jolpica | FP1 2025 round 2 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/2/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:37 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2025/2/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:39 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/2/practice2.json?limit=100&offset=0
+2026-11-15 12:11:39 | WARNING | extract.jolpica | FP2 2025 round 2 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/2/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:40 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/2/practice3.json?limit=100&offset=0
+2026-11-15 12:11:40 | WARNING | extract.jolpica | FP3 2025 round 2 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/2/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:41 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2025/3/practice1.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:44 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/3/practice1.json?limit=100&offset=0
+2026-11-15 12:11:44 | WARNING | extract.jolpica | FP1 2025 round 3 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/3/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:45 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2025/3/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:48 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/3/practice2.json?limit=100&offset=0
+2026-11-15 12:11:48 | WARNING | extract.jolpica | FP2 2025 round 3 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/3/practice2.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:49 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2025/3/practice3.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
+2026-11-15 12:11:51 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/3/practice3.json?limit=100&offset=0
+2026-11-15 12:11:51 | WARNING | extract.jolpica | FP3 2025 round 3 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/3/practice3.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:52 | ERROR   | app.services.jolpica | Permintaan ditolak permanen (400): https://api.jolpi.ca/ergast/f1/2025/4/practice1.json?limit=100&offset=0
+2026-11-15 12:11:52 | WARNING | extract.jolpica | FP1 2025 round 4 tidak tersedia: Client error '400 Bad Request' for url 'https://api.jolpi.ca/ergast/f1/2025/4/practice1.json?limit=100&offset=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-11-15 12:11:53 | WARNING | app.services.jolpica | Percobaan 1/5 gagal untuk https://api.jolpi.ca/ergast/f1/2025/4/practice2.json?limit=100&offset=0 (status 429). Tunggu 2.0 detik...
