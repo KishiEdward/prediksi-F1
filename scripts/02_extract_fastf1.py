@@ -13,6 +13,7 @@ mencegah download ulang data mentah dari server F1.
 """
 import logging
 import sys
+import time
 from pathlib import Path
 
 import pandas as pd
@@ -27,19 +28,38 @@ logger = logging.getLogger("extract.fastf1")
 
 OUT_DIR = PROJECT_ROOT / "data" / "raw" / "fastf1"
 
-# Kolom laps yang disimpan (hanya yang ada di versi FastF1 terpasang)
+# Kolom laps yang disimpan (hanya yang ada di versi FastF1 terpasang).
+# Catatan: fastf1 >= 3.x memakai ejaan "TyreLife".
 KOLOM_LAPS = [
     "Driver", "DriverNumber", "LapNumber", "Stint", "Time", "LapTime", "Compound",
-    "TireLife", "FreshTyre", "Position", "PitIn", "PitOut", "TrackStatus",
+    "TyreLife", "FreshTyre", "Position", "PitIn", "PitOut", "TrackStatus",
     "IsAccurate", "Deleted", "Sector1Time", "Sector2Time", "Sector3Time",
     "SpeedI1", "SpeedI2", "SpeedFL", "SpeedST",
 ]
+
+JEDA_RATE_LIMIT = 65 * 60  # fastf1 membatasi 500 call/jam; tunggu jendela reset
 
 
 def _timedelta_ke_detik(df: pd.DataFrame, kolom: str) -> None:
     """Ubah kolom timedelta menjadi detik (float) agar mudah dipakai ML."""
     if kolom in df.columns:
         df[kolom] = df[kolom].dt.total_seconds().astype("Float64")
+
+
+def muat_sesi_dengan_jeda(tahun: int, ronde: int):
+    """Muat sesi; bila kena rate limit fastf1 (500 call/jam), tunggu lalu ulangi.
+
+    Data yang sudah ter-cache tidak dihitung ke rate limit, jadi hanya
+    unduhan baru yang mengkonsumsi kuota.
+    """
+    from fastf1.req import RateLimitExceededError
+    while True:
+        try:
+            return muat_sesi_race(tahun, ronde)
+        except RateLimitExceededError:
+            logger.warning("Rate limit FastF1 tercapai. Jeda %d menit lalu lanjut...",
+                           JEDA_RATE_LIMIT // 60)
+            time.sleep(JEDA_RATE_LIMIT)
 
 
 def ekstrak_satu_race(tahun: int, ronde: int) -> bool:
@@ -50,7 +70,7 @@ def ekstrak_satu_race(tahun: int, ronde: int) -> bool:
         return False
 
     try:
-        sesi = muat_sesi_race(tahun, ronde)
+        sesi = muat_sesi_dengan_jeda(tahun, ronde)
     except Exception as exc:  # race batal / data tidak tersedia
         logger.warning("Gagal memuat %d round %d: %s", tahun, ronde, exc)
         return False

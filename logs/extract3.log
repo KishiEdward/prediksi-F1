@@ -1,0 +1,65 @@
+2026-11-15 12:37:04 | INFO    | extract.jolpica | races 2021: 22 seri
+2026-11-15 12:37:04 | INFO    | extract.jolpica | races 2022: 22 seri
+2026-11-15 12:37:04 | INFO    | extract.jolpica | races 2023: 22 seri
+2026-11-15 12:37:04 | INFO    | extract.jolpica | races 2024: 24 seri
+2026-11-15 12:37:04 | INFO    | extract.jolpica | races 2025: 24 seri
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   results 2021: 440 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   results 2022: 440 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   results 2023: 440 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   results 2024: 479 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   results 2025: 479 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   qualifying 2021: 439 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   qualifying 2022: 440 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   qualifying 2023: 440 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   qualifying 2024: 479 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   qualifying 2025: 479 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   sprint 2021: 60 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   sprint 2022: 60 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   sprint 2023: 120 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   sprint 2024: 120 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   sprint 2025: 120 baris
+2026-11-15 12:37:04 | INFO    | extract.jolpica |   pitstops 2021: 798 baris
+2026-11-15 12:37:05 | INFO    | extract.jolpica |   pitstops 2022: 805 baris
+2026-11-15 12:37:05 | INFO    | extract.jolpica |   pitstops 2023: 912 baris
+2026-11-15 12:37:05 | INFO    | extract.jolpica |   pitstops 2024: 825 baris
+2026-11-15 12:37:05 | INFO    | extract.jolpica |   pitstops 2025: 821 baris
+2026-11-15 12:37:05 | INFO    | extract.jolpica | drivers: total 126 baris
+2026-11-15 12:37:05 | INFO    | extract.jolpica | constructors: total 50 baris
+2026-11-15 12:37:05 | INFO    | extract.jolpica | circuits: 78 sirkuit
+2026-11-15 12:37:05 | INFO    | extract.jolpica | SELESAI. Parquet tersimpan di C:\A_kuliah\Skripsi\skripsi-F1\Model\data\raw
+2026-11-15 12:37:07 | INFO    | extract.fastf1 | [1/114] Bahrain Grand Prix 2021 round 1
+C:\A_kuliah\Skripsi\skripsi-F1\Model\.venv\Lib\site-packages\fastf1\req.py:251: FutureWarning: `.enable_cache` is deprecated and will be removed in a future version. Use `.configure` instead.
+  warnings.warn("`.enable_cache` is deprecated and will be removed in a "
+2026-11-15 12:37:07 | INFO    | app.services.fastf1_svc | Cache FastF1 aktif di C:\A_kuliah\Skripsi\skripsi-F1\Model\data\raw\fastf1_cache
+core        WARNING 	Fixed incorrect tyre stint information for driver '11'
+2026-11-15 12:37:08 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '11'
+core        WARNING 	Driver 44 completed the race distance 00:00.081000 before the recorded end of the session.
+2026-11-15 12:37:11 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.081000 before the recorded end of the session.
+2026-11-15 12:37:11 | INFO    | extract.fastf1 | Selesai 2021 round 1: 1027 lap
+2026-11-15 12:37:11 | INFO    | extract.fastf1 | [2/114] Emilia Romagna Grand Prix 2021 round 2
+core        WARNING 	Driver 33 completed the race distance 00:01.003000 before the recorded end of the session.
+2026-11-15 12:37:13 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:01.003000 before the recorded end of the session.
+2026-11-15 12:37:14 | INFO    | extract.fastf1 | Selesai 2021 round 2: 1127 lap
+2026-11-15 12:37:14 | INFO    | extract.fastf1 | [3/114] Portuguese Grand Prix 2021 round 3
+core        WARNING 	Driver 44 completed the race distance 00:00.050000 before the recorded end of the session.
+2026-11-15 12:37:16 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.050000 before the recorded end of the session.
+2026-11-15 12:37:16 | INFO    | extract.fastf1 | Selesai 2021 round 3: 1245 lap
+2026-11-15 12:37:16 | INFO    | extract.fastf1 | [4/114] Spanish Grand Prix 2021 round 4
+core        WARNING 	Driver 44 completed the race distance 00:00.083000 before the recorded end of the session.
+2026-11-15 12:37:19 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.083000 before the recorded end of the session.
+2026-11-15 12:37:19 | INFO    | extract.fastf1 | Selesai 2021 round 4: 1247 lap
+2026-11-15 12:37:19 | INFO    | extract.fastf1 | [5/114] Monaco Grand Prix 2021 round 5
+core        WARNING 	Failed to perform lap accuracy check - all laps marked as inaccurate (driver 16)
+2026-11-15 12:37:21 | WARNING | fastf1.fastf1.core | Failed to perform lap accuracy check - all laps marked as inaccurate (driver 16)
+core        WARNING 	Driver 33 completed the race distance 00:00.058000 before the recorded end of the session.
+2026-11-15 12:37:22 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:00.058000 before the recorded end of the session.
+2026-11-15 12:37:22 | INFO    | extract.fastf1 | Selesai 2021 round 5: 1419 lap
+2026-11-15 12:37:22 | INFO    | extract.fastf1 | [6/114] Azerbaijan Grand Prix 2021 round 6
+core        WARNING 	Fixed incorrect tyre stint information for driver '11'
+2026-11-15 12:37:23 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '11'
+core        WARNING 	Fixed incorrect tyre stint information for driver '47'
+2026-11-15 12:37:23 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '47'
+core        WARNING 	Driver 11 completed the race distance 00:00.037000 before the recorded end of the session.
+2026-11-15 12:37:25 | WARNING | fastf1.fastf1.core | Driver 11 completed the race distance 00:00.037000 before the recorded end of the session.
+2026-11-15 12:37:25 | INFO    | extract.fastf1 | Selesai 2021 round 6: 943 lap
+2026-11-15 12:37:25 | INFO    | extract.fastf1 | [7/114] French Grand Prix 2021 round 7

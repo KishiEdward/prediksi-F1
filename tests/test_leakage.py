@@ -56,7 +56,7 @@ def _laps_sintetis() -> pd.DataFrame:
                 "season": 2024, "round": 1, "Driver": kode, "LapNumber": lap,
                 "Stint": 1, "Time": lap * basis + (0.0 if kode == "AAA" else 0.5),
                 "LapTime": basis + lap * 0.1,  # degradasi linear +0.1/lap
-                "Compound": "MEDIUM", "TireLife": float(lap), "FreshTyre": lap == 1,
+                "Compound": "MEDIUM", "TyreLife": float(lap), "FreshTyre": lap == 1,
                 "Position": 1 if kode == "AAA" else 2, "PitIn": False, "PitOut": False,
                 "TrackStatus": "1", "IsAccurate": True, "Deleted": False,
             })

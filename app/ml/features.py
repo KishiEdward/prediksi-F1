@@ -52,6 +52,19 @@ JUMLAH_TIKUNGAN = {
     "portimao": 15, "red_bull_ring": 10, "rodriguez": 17, "shanghai": 16,
     "silverstone": 18, "sochi": 18, "spa": 19, "suzuka": 18,
     "villeneuve": 14, "yas_marina": 16, "zandvoort": 14,
+    "ricard": 10, "vegas": 17,
+}
+
+# Panjang sirkuit dalam km (data referensi publik; Jolpica tidak menyediakan)
+PANJANG_SIRKUIT_KM = {
+    "albert_park": 5.278, "americas": 5.513, "bahrain": 5.412, "baku": 6.003,
+    "catalunya": 4.657, "hungaroring": 4.381, "imola": 4.909, "interlagos": 4.309,
+    "istanbul": 5.338, "jeddah": 6.174, "las_vegas": 6.201, "le_castellet": 5.842,
+    "losail": 5.419, "marina_bay": 4.940, "miami": 5.412, "monaco": 3.337,
+    "monza": 5.793, "portimao": 4.684, "red_bull_ring": 4.318, "rodriguez": 4.304,
+    "shanghai": 5.451, "silverstone": 5.891, "sochi": 5.848, "spa": 7.004,
+    "suzuka": 5.807, "villeneuve": 4.361, "yas_marina": 5.281, "zandvoort": 4.259,
+    "ricard": 5.842, "vegas": 6.201,
 }
 
 # ---------------------------------------------------------------------------
@@ -123,6 +136,8 @@ def _bangun_fitur_prabalapan() -> pd.DataFrame:
     # Sirkuit per race datang dari tabel races (results tidak selalu memuatnya)
     sirkuit_per_race = races[["season", "round", "Circuit.circuitId", "Circuit.circuitName"]] \
         .rename(columns={"Circuit.circuitId": "circuit_id", "Circuit.circuitName": "circuit_name"})
+    sirkuit_per_race["season"] = pd.to_numeric(sirkuit_per_race["season"]).astype(int)
+    sirkuit_per_race["round"] = pd.to_numeric(sirkuit_per_race["round"]).astype(int)
     df = df.drop(columns=[c for c in df.columns if c.startswith("Circuit.")], errors="ignore")
     df = df.merge(sirkuit_per_race, on=["season", "round"], how="left")
 
@@ -133,9 +148,13 @@ def _bangun_fitur_prabalapan() -> pd.DataFrame:
     df["points"] = pd.to_numeric(df["points"], errors="coerce").fillna(0.0)
     df["grid"] = pd.to_numeric(df["grid"], errors="coerce")
 
+    # Kunci join harus integer (parquet Jolpica menyimpannya sebagai string)
+    df["season"] = pd.to_numeric(df["season"], errors="coerce").astype(int)
+    df["round"] = pd.to_numeric(df["round"], errors="coerce").astype(int)
+
     # Total lap race = maksimum lap yang diselesaikan pemenang
-    total_laps = df.groupby(["season", "round"])["laps"].transform(
-        lambda s: pd.to_numeric(s, errors="coerce").max())
+    df["laps"] = pd.to_numeric(df["laps"], errors="coerce")
+    total_laps = df.groupby(["season", "round"])["laps"].transform("max")
     df["total_laps"] = total_laps
 
     # ---- Statistik historis pembalap (expanding, HANYA race sebelumnya) ----
@@ -159,14 +178,13 @@ def _bangun_fitur_prabalapan() -> pd.DataFrame:
     df["team_avg_points_prev"] = gt["points"].apply(
         lambda s: s.expanding().mean().shift(1))
 
-    # ---- Karakteristik sirkuit ----
+    # ---- Karakteristik sirkuit (panjang & tikungan dari referensi publik) ----
     sirk = circuits.rename(columns={
         "circuitId": "circuit_id", "circuitName": "circuit_name_ref",
         "Location.country": "country", "Location.locality": "locality",
-        "circuitLength": "circuit_len_km", "circuitType": "circuit_type",
-    })[["circuit_id", "country", "locality", "circuit_len_km", "circuit_type"]]
-    sirk["circuit_len_km"] = pd.to_numeric(sirk["circuit_len_km"], errors="coerce")
+    })[["circuit_id", "country", "locality"]]
     df = df.merge(sirk, on="circuit_id", how="left")
+    df["circuit_len_km"] = df["circuit_id"].map(PANJANG_SIRKUIT_KM).astype("Float64")
     df["n_corners"] = df["circuit_id"].map(JUMLAH_TIKUNGAN).astype("Float64")
 
     # ---- Kualifikasi: posisi + waktu terbaik relatif ----
@@ -179,6 +197,8 @@ def _bangun_fitur_prabalapan() -> pd.DataFrame:
     # relatif terhadap waktu terbaik pada sesi yang sama (hapus efek panjang sirkuit)
     q["quali_best_sec_rel"] = q["quali_best_sec"] - q.groupby(
         ["season", "round"])["quali_best_sec"].transform("min")
+    q["season"] = pd.to_numeric(q["season"]).astype(int)
+    q["round"] = pd.to_numeric(q["round"]).astype(int)
     df = df.merge(q[["season", "round", "driver_id", "position", "quali_best_sec_rel"]]
                   .rename(columns={"position": "quali_position"}),
                   on=["season", "round", "driver_id"], how="left")
@@ -190,6 +210,8 @@ def _bangun_fitur_prabalapan() -> pd.DataFrame:
         sp = pd.read_parquet(sprint_path).rename(columns={"Driver.driverId": "driver_id"})
         sp["sprint_position"] = pd.to_numeric(sp.get("positionText", sp.get("position")),
                                               errors="coerce")
+        sp["season"] = pd.to_numeric(sp["season"]).astype(int)
+        sp["round"] = pd.to_numeric(sp["round"]).astype(int)
         df = df.merge(sp[["season", "round", "driver_id", "sprint_position"]],
                       on=["season", "round", "driver_id"], how="left")
     else:
@@ -205,9 +227,11 @@ def _bangun_fitur_prabalapan() -> pd.DataFrame:
     df["country_id"] = df["country"].map(_kode_negara_ke_id)
 
     kolom = (["season", "round", "driver_id", "driver_code", "team_id", "race_name",
-              "circuit_id", "circuit_name", "country", "total_laps"]
+              "circuit_id", "circuit_name", "country"]
              + FITUR_PRA_NUMERIK + ["country_id", "finish_position"])
-    df = df[[c for c in kolom if c in df.columns]].copy()
+    # hindari kolom dobel (total_laps sudah termasuk FITUR_PRA_NUMERIK)
+    kolom = list(dict.fromkeys(c for c in kolom if c in df.columns))
+    df = df[kolom].copy()
     df["season"] = df["season"].astype(int)
     df["round"] = df["round"].astype(int)
     return df
@@ -247,11 +271,12 @@ def _bangun_fitur_inrace(laps: pd.DataFrame, weather: pd.DataFrame,
     df["season"] = df["season"].astype(int)
     df["round"] = df["round"].astype(int)
 
-    # Hanya lap yang datanya akurat & tidak dihapus (kualitas data)
+    # Hanya lap yang datanya akurat & tidak dihapus (kualitas data).
+    # Catatan: kolom `Deleted` bisa berisi None (bukan False) di beberapa musim.
     if "IsAccurate" in df.columns:
         df = df[df["IsAccurate"] == True]  # noqa: E712
     if "Deleted" in df.columns:
-        df = df[df["Deleted"] == False]  # noqa: E712
+        df = df[df["Deleted"].isna() | (df["Deleted"] == False)]  # noqa: E712
 
     df = df.sort_values(["season", "round", "driver_code", "lap_number"]).reset_index(drop=True)
     grp = df.groupby(["season", "round", "driver_code"], group_keys=False, sort=False)
@@ -264,8 +289,9 @@ def _bangun_fitur_inrace(laps: pd.DataFrame, weather: pd.DataFrame,
     df["pb_so_far"] = grp["lap_time_sec"].cummin()
     df["delta_pb_so_far"] = df["lap_time_sec"] - df["pb_so_far"]
 
-    # --- Ban ---
-    df["tyre_life"] = pd.to_numeric(df.get("TireLife"), errors="coerce")
+    # --- Ban --- (fastf1 >= 3.x memakai ejaan "TyreLife")
+    kolom_tyre = "TyreLife" if "TyreLife" in df.columns else "TireLife"
+    df["tyre_life"] = pd.to_numeric(df.get(kolom_tyre), errors="coerce")
     df["stint_number"] = pd.to_numeric(df.get("Stint"), errors="coerce")
     df["fresh_tyre"] = (df.get("FreshTyre") == True).astype(float) \
         if "FreshTyre" in df.columns else np.where(df["tyre_life"] <= 1, 1.0, np.nan)
@@ -289,7 +315,10 @@ def _bangun_fitur_inrace(laps: pd.DataFrame, weather: pd.DataFrame,
     grp = df.groupby(["season", "round", "driver_code"], group_keys=False, sort=False)
 
     # --- Progres balapan ---
-    total = pra.set_index(["season", "round"])["total_laps"]
+    # drop_duplicates: pra punya 1 baris per pembalap; tanpa ini index
+    # (season, round) duplikat dan .get() mengembalikan Series, bukan skalar.
+    total = (pra.drop_duplicates(["season", "round"])
+             .set_index(["season", "round"])["total_laps"])
     df["total_laps"] = [total.get((s, r), np.nan)
                         for s, r in zip(df["season"], df["round"])]
     df["race_progress"] = df["lap_number"] / df["total_laps"]

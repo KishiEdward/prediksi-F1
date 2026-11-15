@@ -1,0 +1,849 @@
+2026-11-15 12:25:23 | INFO    | extract.jolpica | races 2021: 22 seri
+2026-11-15 12:25:23 | INFO    | extract.jolpica | races 2022: 22 seri
+2026-11-15 12:25:23 | INFO    | extract.jolpica | races 2023: 22 seri
+2026-11-15 12:25:23 | INFO    | extract.jolpica | races 2024: 24 seri
+2026-11-15 12:25:23 | INFO    | extract.jolpica | races 2025: 24 seri
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   results 2021: 440 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   results 2022: 440 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   results 2023: 440 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   results 2024: 479 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   results 2025: 479 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   qualifying 2021: 439 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   qualifying 2022: 440 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   qualifying 2023: 440 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   qualifying 2024: 479 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   qualifying 2025: 479 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   sprint 2021: 60 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   sprint 2022: 60 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   sprint 2023: 120 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   sprint 2024: 120 baris
+2026-11-15 12:25:23 | INFO    | extract.jolpica |   sprint 2025: 120 baris
+2026-11-15 12:25:24 | INFO    | extract.jolpica |   pitstops 2021: 798 baris
+2026-11-15 12:25:24 | INFO    | extract.jolpica |   pitstops 2022: 805 baris
+2026-11-15 12:25:24 | INFO    | extract.jolpica |   pitstops 2023: 912 baris
+2026-11-15 12:25:25 | INFO    | extract.jolpica |   pitstops 2024: 825 baris
+2026-11-15 12:25:25 | INFO    | extract.jolpica |   pitstops 2025: 821 baris
+2026-11-15 12:25:25 | INFO    | extract.jolpica | drivers: total 126 baris
+2026-11-15 12:25:25 | INFO    | extract.jolpica | constructors: total 50 baris
+2026-11-15 12:25:26 | INFO    | extract.jolpica | circuits: 78 sirkuit
+2026-11-15 12:25:26 | INFO    | extract.jolpica | SELESAI. Parquet tersimpan di C:\A_kuliah\Skripsi\skripsi-F1\Model\data\raw
+2026-11-15 12:25:28 | INFO    | extract.fastf1 | [1/114] Bahrain Grand Prix 2021 round 1
+C:\A_kuliah\Skripsi\skripsi-F1\Model\.venv\Lib\site-packages\fastf1\req.py:251: FutureWarning: `.enable_cache` is deprecated and will be removed in a future version. Use `.configure` instead.
+  warnings.warn("`.enable_cache` is deprecated and will be removed in a "
+2026-11-15 12:25:28 | INFO    | app.services.fastf1_svc | Cache FastF1 aktif di C:\A_kuliah\Skripsi\skripsi-F1\Model\data\raw\fastf1_cache
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:29 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:30 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:32 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:33 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:34 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:35 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:40 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Fixed incorrect tyre stint information for driver '11'
+2026-11-15 12:25:41 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '11'
+core        WARNING 	Driver 44 completed the race distance 00:00.081000 before the recorded end of the session.
+2026-11-15 12:25:42 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.081000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:43 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:44 | INFO    | extract.fastf1 | Selesai 2021 round 1: 1027 lap
+2026-11-15 12:25:44 | INFO    | extract.fastf1 | [2/114] Emilia Romagna Grand Prix 2021 round 2
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:44 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:46 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:47 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:48 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:49 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:50 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:54 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 33 completed the race distance 00:01.003000 before the recorded end of the session.
+2026-11-15 12:25:56 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:01.003000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:57 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:58 | INFO    | extract.fastf1 | Selesai 2021 round 2: 1127 lap
+2026-11-15 12:25:58 | INFO    | extract.fastf1 | [3/114] Portuguese Grand Prix 2021 round 3
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:58 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:25:59 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:00 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:02 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:03 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:04 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+_api        WARNING 	Driver 44: Ignoring late data for a previously processed lap.The data may contain errors (previous: 61; current 62)
+2026-11-15 12:26:07 | WARNING | fastf1.api | Driver 44: Ignoring late data for a previously processed lap.The data may contain errors (previous: 61; current 62)
+_api        WARNING 	Failed to align laps for drivers: ['7']
+2026-11-15 12:26:08 | WARNING | fastf1.api | Failed to align laps for drivers: ['7']
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:09 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 44 completed the race distance 00:00.050000 before the recorded end of the session.
+2026-11-15 12:26:11 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.050000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:11 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:12 | INFO    | extract.fastf1 | Selesai 2021 round 3: 1245 lap
+2026-11-15 12:26:12 | INFO    | extract.fastf1 | [4/114] Spanish Grand Prix 2021 round 4
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:12 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:14 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:15 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:16 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:17 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:18 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+_api        WARNING 	Driver 55: Ignoring late data for a previously processed lap.The data may contain errors (previous: 28; current 29)
+2026-11-15 12:26:22 | WARNING | fastf1.api | Driver 55: Ignoring late data for a previously processed lap.The data may contain errors (previous: 28; current 29)
+_api        WARNING 	Driver 22: Ignoring late data for a previously processed lap.The data may contain errors (previous: 2; current 3)
+2026-11-15 12:26:22 | WARNING | fastf1.api | Driver 22: Ignoring late data for a previously processed lap.The data may contain errors (previous: 2; current 3)
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:23 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 44 completed the race distance 00:00.083000 before the recorded end of the session.
+2026-11-15 12:26:25 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.083000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:25 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:26 | INFO    | extract.fastf1 | Selesai 2021 round 4: 1247 lap
+2026-11-15 12:26:26 | INFO    | extract.fastf1 | [5/114] Monaco Grand Prix 2021 round 5
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:26 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:27 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:28 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:29 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:31 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:32 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:36 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Failed to perform lap accuracy check - all laps marked as inaccurate (driver 16)
+2026-11-15 12:26:38 | WARNING | fastf1.fastf1.core | Failed to perform lap accuracy check - all laps marked as inaccurate (driver 16)
+core        WARNING 	Driver 33 completed the race distance 00:00.058000 before the recorded end of the session.
+2026-11-15 12:26:38 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:00.058000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:39 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:40 | INFO    | extract.fastf1 | Selesai 2021 round 5: 1419 lap
+2026-11-15 12:26:40 | INFO    | extract.fastf1 | [6/114] Azerbaijan Grand Prix 2021 round 6
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:40 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:41 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:42 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:43 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:45 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:46 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+_api        WARNING 	Driver 47: Ignoring late data for a previously processed lap.The data may contain errors (previous: 42; current 43)
+2026-11-15 12:26:49 | WARNING | fastf1.api | Driver 47: Ignoring late data for a previously processed lap.The data may contain errors (previous: 42; current 43)
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:50 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Fixed incorrect tyre stint information for driver '11'
+2026-11-15 12:26:51 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '11'
+core        WARNING 	Fixed incorrect tyre stint information for driver '47'
+2026-11-15 12:26:51 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '47'
+core        WARNING 	Driver 11 completed the race distance 00:00.037000 before the recorded end of the session.
+2026-11-15 12:26:52 | WARNING | fastf1.fastf1.core | Driver 11 completed the race distance 00:00.037000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:52 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:53 | INFO    | extract.fastf1 | Selesai 2021 round 6: 943 lap
+2026-11-15 12:26:53 | INFO    | extract.fastf1 | [7/114] French Grand Prix 2021 round 7
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:53 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:54 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:56 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:57 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:26:58 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:00 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:05 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 33 completed the race distance 00:00.047000 before the recorded end of the session.
+2026-11-15 12:27:08 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:00.047000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:08 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:09 | INFO    | extract.fastf1 | Selesai 2021 round 7: 1051 lap
+2026-11-15 12:27:09 | INFO    | extract.fastf1 | [8/114] Styrian Grand Prix 2021 round 8
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:09 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:11 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:12 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:15 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:16 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:17 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+_api        WARNING 	Driver 18: Encountered 1 timing integrity error(s) near lap(s): [33].
+This might be a bug and should be reported.
+2026-11-15 12:27:20 | WARNING | fastf1.api | Driver 18: Encountered 1 timing integrity error(s) near lap(s): [33].
+This might be a bug and should be reported.
+_api        WARNING 	Failed to align laps for drivers: ['10']
+2026-11-15 12:27:21 | WARNING | fastf1.api | Failed to align laps for drivers: ['10']
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:21 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 33 completed the race distance 00:00.152000 before the recorded end of the session.
+2026-11-15 12:27:23 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:00.152000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:23 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:25 | INFO    | extract.fastf1 | Selesai 2021 round 8: 1296 lap
+2026-11-15 12:27:25 | INFO    | extract.fastf1 | [9/114] Austrian Grand Prix 2021 round 9
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:25 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:26 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:27 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:28 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:29 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:30 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:34 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 33 completed the race distance 00:00.061000 before the recorded end of the session.
+2026-11-15 12:27:37 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:00.061000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:37 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:38 | INFO    | extract.fastf1 | Selesai 2021 round 9: 1338 lap
+2026-11-15 12:27:38 | INFO    | extract.fastf1 | [10/114] British Grand Prix 2021 round 10
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:38 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:39 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:41 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:42 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:42 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:43 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+_api        WARNING 	Driver  4: Ignoring late data for a previously processed lap.The data may contain errors (previous: 43; current 44)
+2026-11-15 12:27:46 | WARNING | fastf1.api | Driver  4: Ignoring late data for a previously processed lap.The data may contain errors (previous: 43; current 44)
+_api        WARNING 	Driver 55: Ignoring late data for a previously processed lap.The data may contain errors (previous: 7; current 8)
+2026-11-15 12:27:47 | WARNING | fastf1.api | Driver 55: Ignoring late data for a previously processed lap.The data may contain errors (previous: 7; current 8)
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:47 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 44 completed the race distance 00:00.025000 before the recorded end of the session.
+2026-11-15 12:27:50 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.025000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:50 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:51 | INFO    | extract.fastf1 | Selesai 2021 round 10: 970 lap
+2026-11-15 12:27:51 | INFO    | extract.fastf1 | [11/114] Hungarian Grand Prix 2021 round 11
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:51 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:52 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:54 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:55 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:56 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:27:57 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+_api        WARNING 	Driver 10: Ignoring late data for a previously processed lap.The data may contain errors (previous: 64; current 65)
+2026-11-15 12:28:00 | WARNING | fastf1.api | Driver 10: Ignoring late data for a previously processed lap.The data may contain errors (previous: 64; current 65)
+_api        WARNING 	Failed to align laps for drivers: ['9', '4']
+2026-11-15 12:28:00 | WARNING | fastf1.api | Failed to align laps for drivers: ['9', '4']
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:01 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 31 completed the race distance 00:00.068000 before the recorded end of the session.
+2026-11-15 12:28:03 | WARNING | fastf1.fastf1.core | Driver 31 completed the race distance 00:00.068000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:03 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:04 | INFO    | extract.fastf1 | Selesai 2021 round 11: 985 lap
+2026-11-15 12:28:04 | INFO    | extract.fastf1 | [12/114] Belgian Grand Prix 2021 round 12
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:04 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:05 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:06 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:07 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:09 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:10 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+_api        WARNING 	Driver 33: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 33: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 63: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 63: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 44: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 44: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver  3: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver  3: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver  5: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver  5: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 10: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 10: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 11: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 11: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 31: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 31: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 16: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 16: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver  6: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver  6: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 55: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 55: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 14: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 14: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 77: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 77: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 99: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 99: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver  4: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver  4: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 22: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 22: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 47: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 47: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver  9: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver  9: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver 18: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver 18: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+_api        WARNING 	Driver  7: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+2026-11-15 12:28:11 | WARNING | fastf1.api | Driver  7: Ignoring late data for a previously processed lap.The data may contain errors (previous: 1; current 3)
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:11 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Fixed incorrect tyre stint information for driver '33'
+2026-11-15 12:28:12 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '33'
+core        WARNING 	Fixed incorrect tyre stint information for driver '63'
+2026-11-15 12:28:12 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '63'
+core        WARNING 	Fixed incorrect tyre stint information for driver '6'
+2026-11-15 12:28:12 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '6'
+core        WARNING 	Fixed incorrect tyre stint information for driver '99'
+2026-11-15 12:28:12 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '99'
+core        WARNING 	Fixed incorrect tyre stint information for driver '47'
+2026-11-15 12:28:12 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '47'
+core        WARNING 	Fixed incorrect tyre stint information for driver '9'
+2026-11-15 12:28:12 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '9'
+core        WARNING 	Fixed incorrect tyre stint information for driver '7'
+2026-11-15 12:28:12 | WARNING | fastf1.fastf1.core | Fixed incorrect tyre stint information for driver '7'
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:13 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:14 | INFO    | extract.fastf1 | Selesai 2021 round 12: 60 lap
+2026-11-15 12:28:14 | INFO    | extract.fastf1 | [13/114] Dutch Grand Prix 2021 round 13
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:14 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:15 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:16 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:18 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:19 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:21 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:25 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 33 completed the race distance 00:00.012000 before the recorded end of the session.
+2026-11-15 12:28:28 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:00.012000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:28 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:29 | INFO    | extract.fastf1 | Selesai 2021 round 13: 1361 lap
+2026-11-15 12:28:29 | INFO    | extract.fastf1 | [14/114] Italian Grand Prix 2021 round 14
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:29 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:30 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:32 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:33 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:34 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:35 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:39 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Failed to perform lap accuracy check - all laps marked as inaccurate (driver 22)
+2026-11-15 12:28:41 | WARNING | fastf1.fastf1.core | Failed to perform lap accuracy check - all laps marked as inaccurate (driver 22)
+core        WARNING 	Driver 3 completed the race distance 00:00.078000 before the recorded end of the session.
+2026-11-15 12:28:42 | WARNING | fastf1.fastf1.core | Driver 3 completed the race distance 00:00.078000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:42 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:43 | INFO    | extract.fastf1 | Selesai 2021 round 14: 891 lap
+2026-11-15 12:28:43 | INFO    | extract.fastf1 | [15/114] Russian Grand Prix 2021 round 15
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:43 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:45 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:46 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:48 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:49 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:51 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:55 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 44 completed the race distance 00:00.044000 before the recorded end of the session.
+2026-11-15 12:28:58 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.044000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:58 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:59 | INFO    | extract.fastf1 | Selesai 2021 round 15: 1025 lap
+2026-11-15 12:28:59 | INFO    | extract.fastf1 | [16/114] Turkish Grand Prix 2021 round 16
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:28:59 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:01 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:03 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:04 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:05 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:06 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:10 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 77 completed the race distance 00:00.079000 before the recorded end of the session.
+2026-11-15 12:29:12 | WARNING | fastf1.fastf1.core | Driver 77 completed the race distance 00:00.079000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:13 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:14 | INFO    | extract.fastf1 | Selesai 2021 round 16: 1147 lap
+2026-11-15 12:29:14 | INFO    | extract.fastf1 | [17/114] United States Grand Prix 2021 round 17
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:14 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:15 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:16 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:17 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:18 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:20 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:23 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 33 completed the race distance 00:00.059000 before the recorded end of the session.
+2026-11-15 12:29:26 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:00.059000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:26 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:27 | INFO    | extract.fastf1 | Selesai 2021 round 17: 1044 lap
+2026-11-15 12:29:27 | INFO    | extract.fastf1 | [18/114] Mexico City Grand Prix 2021 round 18
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:27 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:29 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:30 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:31 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:32 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:33 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:38 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 33 completed the race distance 00:00.032000 before the recorded end of the session.
+2026-11-15 12:29:40 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:00.032000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:40 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:41 | INFO    | extract.fastf1 | Selesai 2021 round 18: 1261 lap
+2026-11-15 12:29:41 | INFO    | extract.fastf1 | [19/114] São Paulo Grand Prix 2021 round 19
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:41 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:42 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:44 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:46 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:47 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:49 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:54 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 44 completed the race distance 00:00.059000 before the recorded end of the session.
+2026-11-15 12:29:58 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.059000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:29:58 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:00 | INFO    | extract.fastf1 | Selesai 2021 round 19: 1360 lap
+2026-11-15 12:30:00 | INFO    | extract.fastf1 | [20/114] Qatar Grand Prix 2021 round 20
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:00 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:02 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:04 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:05 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:07 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:09 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:14 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 44 completed the race distance 00:00.037000 before the recorded end of the session.
+2026-11-15 12:30:17 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.037000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:17 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:19 | INFO    | extract.fastf1 | Selesai 2021 round 20: 1114 lap
+2026-11-15 12:30:19 | INFO    | extract.fastf1 | [21/114] Saudi Arabian Grand Prix 2021 round 21
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:19 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:20 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:22 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:23 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:25 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:26 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:30 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 44 completed the race distance 00:00.180000 before the recorded end of the session.
+2026-11-15 12:30:33 | WARNING | fastf1.fastf1.core | Driver 44 completed the race distance 00:00.180000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:34 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:35 | INFO    | extract.fastf1 | Selesai 2021 round 21: 845 lap
+2026-11-15 12:30:35 | INFO    | extract.fastf1 | [22/114] Abu Dhabi Grand Prix 2021 round 22
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:35 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:37 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:38 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:40 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:41 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:43 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:48 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Failed to perform lap accuracy check - all laps marked as inaccurate (driver 9)
+2026-11-15 12:30:50 | WARNING | fastf1.fastf1.core | Failed to perform lap accuracy check - all laps marked as inaccurate (driver 9)
+core        WARNING 	Driver 33 completed the race distance 00:00.017000 before the recorded end of the session.
+2026-11-15 12:30:50 | WARNING | fastf1.fastf1.core | Driver 33 completed the race distance 00:00.017000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:51 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:52 | INFO    | extract.fastf1 | Selesai 2021 round 22: 1000 lap
+2026-11-15 12:30:52 | INFO    | extract.fastf1 | [23/114] Bahrain Grand Prix 2022 round 1
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:52 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:54 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:56 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:57 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:30:59 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:00 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:06 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 16 completed the race distance 00:00.026000 before the recorded end of the session.
+2026-11-15 12:31:09 | WARNING | fastf1.fastf1.core | Driver 16 completed the race distance 00:00.026000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:09 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:10 | INFO    | extract.fastf1 | Selesai 2022 round 1: 1125 lap
+2026-11-15 12:31:10 | INFO    | extract.fastf1 | [24/114] Saudi Arabian Grand Prix 2022 round 2
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:10 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:12 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:14 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:15 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:16 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:18 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:22 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	No lap data for driver 22
+2026-11-15 12:31:24 | WARNING | fastf1.fastf1.core | No lap data for driver 22
+core        WARNING 	Failed to perform lap accuracy check - all laps marked as inaccurate (driver 22)
+2026-11-15 12:31:25 | WARNING | fastf1.fastf1.core | Failed to perform lap accuracy check - all laps marked as inaccurate (driver 22)
+core        WARNING 	Failed to perform lap accuracy check - all laps marked as inaccurate (driver 47)
+2026-11-15 12:31:25 | WARNING | fastf1.fastf1.core | Failed to perform lap accuracy check - all laps marked as inaccurate (driver 47)
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:25 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:26 | INFO    | extract.fastf1 | Selesai 2022 round 2: 820 lap
+2026-11-15 12:31:26 | INFO    | extract.fastf1 | [25/114] Australian Grand Prix 2022 round 3
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:26 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:28 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:30 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:31 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:33 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:34 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+_api        WARNING 	Driver  3: Ignoring late data for a previously processed lap.The data may contain errors (previous: 28; current 29)
+2026-11-15 12:31:38 | WARNING | fastf1.api | Driver  3: Ignoring late data for a previously processed lap.The data may contain errors (previous: 28; current 29)
+_api        WARNING 	Failed to align laps for drivers: ['55']
+2026-11-15 12:31:39 | WARNING | fastf1.api | Failed to align laps for drivers: ['55']
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:39 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+core        WARNING 	Driver 16 completed the race distance 00:00.148000 before the recorded end of the session.
+2026-11-15 12:31:42 | WARNING | fastf1.fastf1.core | Driver 16 completed the race distance 00:00.148000 before the recorded end of the session.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:42 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:43 | INFO    | extract.fastf1 | Selesai 2022 round 3: 1045 lap
+2026-11-15 12:31:43 | INFO    | extract.fastf1 | [26/114] Emilia Romagna Grand Prix 2022 round 4
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:43 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:45 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:47 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:49 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:50 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:52 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:31:56 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:00 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:02 | INFO    | extract.fastf1 | Selesai 2022 round 4: 1132 lap
+2026-11-15 12:32:02 | INFO    | extract.fastf1 | [27/114] Miami Grand Prix 2022 round 5
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:02 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:03 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:05 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:06 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:08 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:09 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:14 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:17 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:19 | INFO    | extract.fastf1 | Selesai 2022 round 5: 1057 lap
+2026-11-15 12:32:19 | INFO    | extract.fastf1 | [28/114] Spanish Grand Prix 2022 round 6
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:19 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:20 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:22 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:24 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+F1 account email: transport    WARNING 	Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:25 | WARNING | fastf1.fastf1.internals.f1account.transport | Failed to authenticate with Formula 1 account, continuing without authentication: No F1 account credentials entered.
+2026-11-15 12:32:26 | WARNING | extract.fastf1 | Gagal memuat 2022 round 6: any API: 500 calls/h
+2026-11-15 12:32:26 | INFO    | extract.fastf1 | [29/114] Monaco Grand Prix 2022 round 7
+2026-11-15 12:32:26 | WARNING | extract.fastf1 | Gagal memuat 2022 round 7: any API: 500 calls/h
+2026-11-15 12:32:26 | INFO    | extract.fastf1 | [30/114] Azerbaijan Grand Prix 2022 round 8
+2026-11-15 12:32:26 | WARNING | extract.fastf1 | Gagal memuat 2022 round 8: any API: 500 calls/h
+2026-11-15 12:32:26 | INFO    | extract.fastf1 | [31/114] Canadian Grand Prix 2022 round 9
+2026-11-15 12:32:27 | WARNING | extract.fastf1 | Gagal memuat 2022 round 9: any API: 500 calls/h
+2026-11-15 12:32:27 | INFO    | extract.fastf1 | [32/114] British Grand Prix 2022 round 10
+2026-11-15 12:32:27 | WARNING | extract.fastf1 | Gagal memuat 2022 round 10: any API: 500 calls/h
+2026-11-15 12:32:27 | INFO    | extract.fastf1 | [33/114] Austrian Grand Prix 2022 round 11
+2026-11-15 12:32:27 | WARNING | extract.fastf1 | Gagal memuat 2022 round 11: any API: 500 calls/h
+2026-11-15 12:32:27 | INFO    | extract.fastf1 | [34/114] French Grand Prix 2022 round 12
+2026-11-15 12:32:27 | WARNING | extract.fastf1 | Gagal memuat 2022 round 12: any API: 500 calls/h
+2026-11-15 12:32:27 | INFO    | extract.fastf1 | [35/114] Hungarian Grand Prix 2022 round 13
+2026-11-15 12:32:28 | WARNING | extract.fastf1 | Gagal memuat 2022 round 13: any API: 500 calls/h
+2026-11-15 12:32:28 | INFO    | extract.fastf1 | [36/114] Belgian Grand Prix 2022 round 14
+2026-11-15 12:32:28 | WARNING | extract.fastf1 | Gagal memuat 2022 round 14: any API: 500 calls/h
+2026-11-15 12:32:28 | INFO    | extract.fastf1 | [37/114] Dutch Grand Prix 2022 round 15
+2026-11-15 12:32:28 | WARNING | extract.fastf1 | Gagal memuat 2022 round 15: any API: 500 calls/h
+2026-11-15 12:32:28 | INFO    | extract.fastf1 | [38/114] Italian Grand Prix 2022 round 16
+2026-11-15 12:32:28 | WARNING | extract.fastf1 | Gagal memuat 2022 round 16: any API: 500 calls/h
+2026-11-15 12:32:28 | INFO    | extract.fastf1 | [39/114] Singapore Grand Prix 2022 round 17
+2026-11-15 12:32:29 | WARNING | extract.fastf1 | Gagal memuat 2022 round 17: any API: 500 calls/h
+2026-11-15 12:32:29 | INFO    | extract.fastf1 | [40/114] Japanese Grand Prix 2022 round 18
+2026-11-15 12:32:29 | WARNING | extract.fastf1 | Gagal memuat 2022 round 18: any API: 500 calls/h
+2026-11-15 12:32:29 | INFO    | extract.fastf1 | [41/114] United States Grand Prix 2022 round 19
+2026-11-15 12:32:29 | WARNING | extract.fastf1 | Gagal memuat 2022 round 19: any API: 500 calls/h
+2026-11-15 12:32:29 | INFO    | extract.fastf1 | [42/114] Mexico City Grand Prix 2022 round 20
+2026-11-15 12:32:29 | WARNING | extract.fastf1 | Gagal memuat 2022 round 20: any API: 500 calls/h
+2026-11-15 12:32:29 | INFO    | extract.fastf1 | [43/114] São Paulo Grand Prix 2022 round 21
+2026-11-15 12:32:30 | WARNING | extract.fastf1 | Gagal memuat 2022 round 21: any API: 500 calls/h
+2026-11-15 12:32:30 | INFO    | extract.fastf1 | [44/114] Abu Dhabi Grand Prix 2022 round 22
+2026-11-15 12:32:30 | WARNING | extract.fastf1 | Gagal memuat 2022 round 22: any API: 500 calls/h
+2026-11-15 12:32:30 | INFO    | extract.fastf1 | [45/114] Bahrain Grand Prix 2023 round 1
+2026-11-15 12:32:30 | WARNING | extract.fastf1 | Gagal memuat 2023 round 1: any API: 500 calls/h
+2026-11-15 12:32:30 | INFO    | extract.fastf1 | [46/114] Saudi Arabian Grand Prix 2023 round 2
+2026-11-15 12:32:30 | WARNING | extract.fastf1 | Gagal memuat 2023 round 2: any API: 500 calls/h
+2026-11-15 12:32:30 | INFO    | extract.fastf1 | [47/114] Australian Grand Prix 2023 round 3
+2026-11-15 12:32:31 | WARNING | extract.fastf1 | Gagal memuat 2023 round 3: any API: 500 calls/h
+2026-11-15 12:32:31 | INFO    | extract.fastf1 | [48/114] Azerbaijan Grand Prix 2023 round 4
+2026-11-15 12:32:31 | WARNING | extract.fastf1 | Gagal memuat 2023 round 4: any API: 500 calls/h
+2026-11-15 12:32:31 | INFO    | extract.fastf1 | [49/114] Miami Grand Prix 2023 round 5
+2026-11-15 12:32:31 | WARNING | extract.fastf1 | Gagal memuat 2023 round 5: any API: 500 calls/h
+2026-11-15 12:32:31 | INFO    | extract.fastf1 | [50/114] Monaco Grand Prix 2023 round 6
+2026-11-15 12:32:31 | WARNING | extract.fastf1 | Gagal memuat 2023 round 6: any API: 500 calls/h
+2026-11-15 12:32:31 | INFO    | extract.fastf1 | [51/114] Spanish Grand Prix 2023 round 7
+2026-11-15 12:32:32 | WARNING | extract.fastf1 | Gagal memuat 2023 round 7: any API: 500 calls/h
+2026-11-15 12:32:32 | INFO    | extract.fastf1 | [52/114] Canadian Grand Prix 2023 round 8
+2026-11-15 12:32:32 | WARNING | extract.fastf1 | Gagal memuat 2023 round 8: any API: 500 calls/h
+2026-11-15 12:32:32 | INFO    | extract.fastf1 | [53/114] Austrian Grand Prix 2023 round 9
+2026-11-15 12:32:32 | WARNING | extract.fastf1 | Gagal memuat 2023 round 9: any API: 500 calls/h
+2026-11-15 12:32:32 | INFO    | extract.fastf1 | [54/114] British Grand Prix 2023 round 10
+2026-11-15 12:32:32 | WARNING | extract.fastf1 | Gagal memuat 2023 round 10: any API: 500 calls/h
+2026-11-15 12:32:32 | INFO    | extract.fastf1 | [55/114] Hungarian Grand Prix 2023 round 11
+2026-11-15 12:32:33 | WARNING | extract.fastf1 | Gagal memuat 2023 round 11: any API: 500 calls/h
+2026-11-15 12:32:33 | INFO    | extract.fastf1 | [56/114] Belgian Grand Prix 2023 round 12
+2026-11-15 12:32:33 | WARNING | extract.fastf1 | Gagal memuat 2023 round 12: any API: 500 calls/h
+2026-11-15 12:32:33 | INFO    | extract.fastf1 | [57/114] Dutch Grand Prix 2023 round 13
+2026-11-15 12:32:33 | WARNING | extract.fastf1 | Gagal memuat 2023 round 13: any API: 500 calls/h
+2026-11-15 12:32:33 | INFO    | extract.fastf1 | [58/114] Italian Grand Prix 2023 round 14
+2026-11-15 12:32:33 | WARNING | extract.fastf1 | Gagal memuat 2023 round 14: any API: 500 calls/h
+2026-11-15 12:32:33 | INFO    | extract.fastf1 | [59/114] Singapore Grand Prix 2023 round 15
+2026-11-15 12:32:34 | WARNING | extract.fastf1 | Gagal memuat 2023 round 15: any API: 500 calls/h
+2026-11-15 12:32:34 | INFO    | extract.fastf1 | [60/114] Japanese Grand Prix 2023 round 16
+2026-11-15 12:32:34 | WARNING | extract.fastf1 | Gagal memuat 2023 round 16: any API: 500 calls/h
+2026-11-15 12:32:34 | INFO    | extract.fastf1 | [61/114] Qatar Grand Prix 2023 round 17
+2026-11-15 12:32:34 | WARNING | extract.fastf1 | Gagal memuat 2023 round 17: any API: 500 calls/h
+2026-11-15 12:32:34 | INFO    | extract.fastf1 | [62/114] United States Grand Prix 2023 round 18
+2026-11-15 12:32:34 | WARNING | extract.fastf1 | Gagal memuat 2023 round 18: any API: 500 calls/h
+2026-11-15 12:32:34 | INFO    | extract.fastf1 | [63/114] Mexico City Grand Prix 2023 round 19
+2026-11-15 12:32:35 | WARNING | extract.fastf1 | Gagal memuat 2023 round 19: any API: 500 calls/h
+2026-11-15 12:32:35 | INFO    | extract.fastf1 | [64/114] São Paulo Grand Prix 2023 round 20
+2026-11-15 12:32:35 | WARNING | extract.fastf1 | Gagal memuat 2023 round 20: any API: 500 calls/h
+2026-11-15 12:32:35 | INFO    | extract.fastf1 | [65/114] Las Vegas Grand Prix 2023 round 21
+2026-11-15 12:32:35 | WARNING | extract.fastf1 | Gagal memuat 2023 round 21: any API: 500 calls/h
+2026-11-15 12:32:35 | INFO    | extract.fastf1 | [66/114] Abu Dhabi Grand Prix 2023 round 22
+2026-11-15 12:32:35 | WARNING | extract.fastf1 | Gagal memuat 2023 round 22: any API: 500 calls/h
+2026-11-15 12:32:35 | INFO    | extract.fastf1 | [67/114] Bahrain Grand Prix 2024 round 1
+2026-11-15 12:32:36 | WARNING | extract.fastf1 | Gagal memuat 2024 round 1: any API: 500 calls/h
+2026-11-15 12:32:36 | INFO    | extract.fastf1 | [68/114] Saudi Arabian Grand Prix 2024 round 2
+2026-11-15 12:32:36 | WARNING | extract.fastf1 | Gagal memuat 2024 round 2: any API: 500 calls/h
+2026-11-15 12:32:36 | INFO    | extract.fastf1 | [69/114] Australian Grand Prix 2024 round 3
+2026-11-15 12:32:36 | WARNING | extract.fastf1 | Gagal memuat 2024 round 3: any API: 500 calls/h
+2026-11-15 12:32:36 | INFO    | extract.fastf1 | [70/114] Japanese Grand Prix 2024 round 4
+2026-11-15 12:32:36 | WARNING | extract.fastf1 | Gagal memuat 2024 round 4: any API: 500 calls/h
+2026-11-15 12:32:36 | INFO    | extract.fastf1 | [71/114] Chinese Grand Prix 2024 round 5
+2026-11-15 12:32:37 | WARNING | extract.fastf1 | Gagal memuat 2024 round 5: any API: 500 calls/h
+2026-11-15 12:32:37 | INFO    | extract.fastf1 | [72/114] Miami Grand Prix 2024 round 6
+2026-11-15 12:32:37 | WARNING | extract.fastf1 | Gagal memuat 2024 round 6: any API: 500 calls/h
+2026-11-15 12:32:37 | INFO    | extract.fastf1 | [73/114] Emilia Romagna Grand Prix 2024 round 7
+2026-11-15 12:32:37 | WARNING | extract.fastf1 | Gagal memuat 2024 round 7: any API: 500 calls/h
+2026-11-15 12:32:37 | INFO    | extract.fastf1 | [74/114] Monaco Grand Prix 2024 round 8
+2026-11-15 12:32:37 | WARNING | extract.fastf1 | Gagal memuat 2024 round 8: any API: 500 calls/h
+2026-11-15 12:32:37 | INFO    | extract.fastf1 | [75/114] Canadian Grand Prix 2024 round 9
+2026-11-15 12:32:38 | WARNING | extract.fastf1 | Gagal memuat 2024 round 9: any API: 500 calls/h
+2026-11-15 12:32:38 | INFO    | extract.fastf1 | [76/114] Spanish Grand Prix 2024 round 10
+2026-11-15 12:32:38 | WARNING | extract.fastf1 | Gagal memuat 2024 round 10: any API: 500 calls/h
+2026-11-15 12:32:38 | INFO    | extract.fastf1 | [77/114] Austrian Grand Prix 2024 round 11
+2026-11-15 12:32:38 | WARNING | extract.fastf1 | Gagal memuat 2024 round 11: any API: 500 calls/h
+2026-11-15 12:32:38 | INFO    | extract.fastf1 | [78/114] British Grand Prix 2024 round 12
+2026-11-15 12:32:38 | WARNING | extract.fastf1 | Gagal memuat 2024 round 12: any API: 500 calls/h
+2026-11-15 12:32:38 | INFO    | extract.fastf1 | [79/114] Hungarian Grand Prix 2024 round 13
+2026-11-15 12:32:39 | WARNING | extract.fastf1 | Gagal memuat 2024 round 13: any API: 500 calls/h
+2026-11-15 12:32:39 | INFO    | extract.fastf1 | [80/114] Belgian Grand Prix 2024 round 14
+2026-11-15 12:32:39 | WARNING | extract.fastf1 | Gagal memuat 2024 round 14: any API: 500 calls/h
+2026-11-15 12:32:39 | INFO    | extract.fastf1 | [81/114] Dutch Grand Prix 2024 round 15
+2026-11-15 12:32:39 | WARNING | extract.fastf1 | Gagal memuat 2024 round 15: any API: 500 calls/h
+2026-11-15 12:32:39 | INFO    | extract.fastf1 | [82/114] Italian Grand Prix 2024 round 16
+2026-11-15 12:32:39 | WARNING | extract.fastf1 | Gagal memuat 2024 round 16: any API: 500 calls/h
+2026-11-15 12:32:39 | INFO    | extract.fastf1 | [83/114] Azerbaijan Grand Prix 2024 round 17
+2026-11-15 12:32:40 | WARNING | extract.fastf1 | Gagal memuat 2024 round 17: any API: 500 calls/h
+2026-11-15 12:32:40 | INFO    | extract.fastf1 | [84/114] Singapore Grand Prix 2024 round 18
+2026-11-15 12:32:40 | WARNING | extract.fastf1 | Gagal memuat 2024 round 18: any API: 500 calls/h
+2026-11-15 12:32:40 | INFO    | extract.fastf1 | [85/114] United States Grand Prix 2024 round 19
+2026-11-15 12:32:40 | WARNING | extract.fastf1 | Gagal memuat 2024 round 19: any API: 500 calls/h
+2026-11-15 12:32:40 | INFO    | extract.fastf1 | [86/114] Mexico City Grand Prix 2024 round 20
+2026-11-15 12:32:40 | WARNING | extract.fastf1 | Gagal memuat 2024 round 20: any API: 500 calls/h
+2026-11-15 12:32:40 | INFO    | extract.fastf1 | [87/114] São Paulo Grand Prix 2024 round 21
+2026-11-15 12:32:41 | WARNING | extract.fastf1 | Gagal memuat 2024 round 21: any API: 500 calls/h
+2026-11-15 12:32:41 | INFO    | extract.fastf1 | [88/114] Las Vegas Grand Prix 2024 round 22
+2026-11-15 12:32:41 | WARNING | extract.fastf1 | Gagal memuat 2024 round 22: any API: 500 calls/h
+2026-11-15 12:32:41 | INFO    | extract.fastf1 | [89/114] Qatar Grand Prix 2024 round 23
+2026-11-15 12:32:41 | WARNING | extract.fastf1 | Gagal memuat 2024 round 23: any API: 500 calls/h
+2026-11-15 12:32:41 | INFO    | extract.fastf1 | [90/114] Abu Dhabi Grand Prix 2024 round 24
+2026-11-15 12:32:41 | WARNING | extract.fastf1 | Gagal memuat 2024 round 24: any API: 500 calls/h
+2026-11-15 12:32:41 | INFO    | extract.fastf1 | [91/114] Australian Grand Prix 2025 round 1
+2026-11-15 12:32:42 | WARNING | extract.fastf1 | Gagal memuat 2025 round 1: any API: 500 calls/h
+2026-11-15 12:32:42 | INFO    | extract.fastf1 | [92/114] Chinese Grand Prix 2025 round 2
+2026-11-15 12:32:42 | WARNING | extract.fastf1 | Gagal memuat 2025 round 2: any API: 500 calls/h
+2026-11-15 12:32:42 | INFO    | extract.fastf1 | [93/114] Japanese Grand Prix 2025 round 3
+2026-11-15 12:32:42 | WARNING | extract.fastf1 | Gagal memuat 2025 round 3: any API: 500 calls/h
+2026-11-15 12:32:42 | INFO    | extract.fastf1 | [94/114] Bahrain Grand Prix 2025 round 4
+2026-11-15 12:32:42 | WARNING | extract.fastf1 | Gagal memuat 2025 round 4: any API: 500 calls/h
+2026-11-15 12:32:42 | INFO    | extract.fastf1 | [95/114] Saudi Arabian Grand Prix 2025 round 5
+2026-11-15 12:32:43 | WARNING | extract.fastf1 | Gagal memuat 2025 round 5: any API: 500 calls/h
+2026-11-15 12:32:43 | INFO    | extract.fastf1 | [96/114] Miami Grand Prix 2025 round 6
+2026-11-15 12:32:43 | WARNING | extract.fastf1 | Gagal memuat 2025 round 6: any API: 500 calls/h
+2026-11-15 12:32:43 | INFO    | extract.fastf1 | [97/114] Emilia Romagna Grand Prix 2025 round 7
+2026-11-15 12:32:43 | WARNING | extract.fastf1 | Gagal memuat 2025 round 7: any API: 500 calls/h
+2026-11-15 12:32:43 | INFO    | extract.fastf1 | [98/114] Monaco Grand Prix 2025 round 8
+2026-11-15 12:32:43 | WARNING | extract.fastf1 | Gagal memuat 2025 round 8: any API: 500 calls/h
+2026-11-15 12:32:43 | INFO    | extract.fastf1 | [99/114] Spanish Grand Prix 2025 round 9
+2026-11-15 12:32:44 | WARNING | extract.fastf1 | Gagal memuat 2025 round 9: any API: 500 calls/h
+2026-11-15 12:32:44 | INFO    | extract.fastf1 | [100/114] Canadian Grand Prix 2025 round 10
+2026-11-15 12:32:44 | WARNING | extract.fastf1 | Gagal memuat 2025 round 10: any API: 500 calls/h
+2026-11-15 12:32:44 | INFO    | extract.fastf1 | [101/114] Austrian Grand Prix 2025 round 11
+2026-11-15 12:32:44 | WARNING | extract.fastf1 | Gagal memuat 2025 round 11: any API: 500 calls/h
+2026-11-15 12:32:44 | INFO    | extract.fastf1 | [102/114] British Grand Prix 2025 round 12
+2026-11-15 12:32:44 | WARNING | extract.fastf1 | Gagal memuat 2025 round 12: any API: 500 calls/h
+2026-11-15 12:32:44 | INFO    | extract.fastf1 | [103/114] Belgian Grand Prix 2025 round 13
+2026-11-15 12:32:45 | WARNING | extract.fastf1 | Gagal memuat 2025 round 13: any API: 500 calls/h
+2026-11-15 12:32:45 | INFO    | extract.fastf1 | [104/114] Hungarian Grand Prix 2025 round 14
+2026-11-15 12:32:45 | WARNING | extract.fastf1 | Gagal memuat 2025 round 14: any API: 500 calls/h
+2026-11-15 12:32:45 | INFO    | extract.fastf1 | [105/114] Dutch Grand Prix 2025 round 15
+2026-11-15 12:32:45 | WARNING | extract.fastf1 | Gagal memuat 2025 round 15: any API: 500 calls/h
+2026-11-15 12:32:45 | INFO    | extract.fastf1 | [106/114] Italian Grand Prix 2025 round 16
+2026-11-15 12:32:45 | WARNING | extract.fastf1 | Gagal memuat 2025 round 16: any API: 500 calls/h
+2026-11-15 12:32:45 | INFO    | extract.fastf1 | [107/114] Azerbaijan Grand Prix 2025 round 17
+2026-11-15 12:32:46 | WARNING | extract.fastf1 | Gagal memuat 2025 round 17: any API: 500 calls/h
+2026-11-15 12:32:46 | INFO    | extract.fastf1 | [108/114] Singapore Grand Prix 2025 round 18
+2026-11-15 12:32:46 | WARNING | extract.fastf1 | Gagal memuat 2025 round 18: any API: 500 calls/h
+2026-11-15 12:32:46 | INFO    | extract.fastf1 | [109/114] United States Grand Prix 2025 round 19
+2026-11-15 12:32:46 | WARNING | extract.fastf1 | Gagal memuat 2025 round 19: any API: 500 calls/h
+2026-11-15 12:32:46 | INFO    | extract.fastf1 | [110/114] Mexico City Grand Prix 2025 round 20
+2026-11-15 12:32:46 | WARNING | extract.fastf1 | Gagal memuat 2025 round 20: any API: 500 calls/h
+2026-11-15 12:32:46 | INFO    | extract.fastf1 | [111/114] São Paulo Grand Prix 2025 round 21
+2026-11-15 12:32:47 | WARNING | extract.fastf1 | Gagal memuat 2025 round 21: any API: 500 calls/h
+2026-11-15 12:32:47 | INFO    | extract.fastf1 | [112/114] Las Vegas Grand Prix 2025 round 22
+2026-11-15 12:32:47 | WARNING | extract.fastf1 | Gagal memuat 2025 round 22: any API: 500 calls/h
+2026-11-15 12:32:47 | INFO    | extract.fastf1 | [113/114] Qatar Grand Prix 2025 round 23
+2026-11-15 12:32:47 | WARNING | extract.fastf1 | Gagal memuat 2025 round 23: any API: 500 calls/h
+2026-11-15 12:32:47 | INFO    | extract.fastf1 | [114/114] Abu Dhabi Grand Prix 2025 round 24
+2026-11-15 12:32:47 | WARNING | extract.fastf1 | Gagal memuat 2025 round 24: any API: 500 calls/h
+2026-11-15 12:32:47 | INFO    | extract.fastf1 | SELESAI. 27 race baru diekstrak, 0 gagal. Output: C:\A_kuliah\Skripsi\skripsi-F1\Model\data\raw\fastf1
