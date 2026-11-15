@@ -90,7 +90,7 @@ def _ringkas_cv(hasil_fold: dict) -> dict:
     for k in keys_reg + keys_cls:
         vals = []
         for f in hasil_fold.values():
-            blok = f["laps_remaining"] if k in keys_reg else f["compound"]
+            blok = f.get("laps_remaining", {}) if k in keys_reg else f.get("compound", {})
             v = blok.get(k)
             if isinstance(v, (int, float)):
                 vals.append(v)
