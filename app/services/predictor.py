@@ -95,16 +95,32 @@ class Predictor:
         p = self.models_dir / "metrics.json"
         if p.exists():
             m = json.loads(p.read_text())
-            run = m.get("run2", m)  # dukung format lama & baru
-            metrik = {}
-            for split in ("val", "test"):
-                if split in run and self.primary in run[split]:
-                    v = run[split][self.primary]
+            run2 = m.get("run2")
+            if run2:
+                # Format Run 2: {run2: {val/test: {model_terpilih_detail, mean_std}}}
+                metrik = {}
+                for split in ("val", "test"):
+                    blok = run2.get(split, {})
+                    det = blok.get("model_terpilih_detail", {}).get(self.primary)
+                    if not det:
+                        continue
                     metrik[split] = {
-                        "laps_remaining": v["laps_remaining"],
-                        "compound": {k: val for k, val in v["compound"].items()
+                        "laps_remaining": det["laps_remaining"],
+                        "compound": {k: v for k, v in det["compound"].items()
                                      if k != "confusion_matrix"},
+                        "mean_std_semua_seed": blok.get("mean_std", {}).get(self.primary),
                     }
+            else:
+                # Format lama: {val/test: {model: {...}}}
+                metrik = {}
+                for split in ("val", "test"):
+                    if split in m and self.primary in m[split]:
+                        v = m[split][self.primary]
+                        metrik[split] = {
+                            "laps_remaining": v["laps_remaining"],
+                            "compound": {k: val for k, val in v["compound"].items()
+                                         if k != "confusion_matrix"},
+                        }
         return {
             "model_version": self.metadata.get("model_version", "?"),
             "trained_at": self.metadata.get("trained_at"),

@@ -297,7 +297,28 @@ python -m pytest tests -v
 Cakupan: validasi skema Pydantic, semua endpoint (Jolpica/FastF1 di-mock),
 aturan 2 pembalap per tim, dan **unit test anti-leakage temporal**.
 
-## 10. Keterbatasan (jujur)
+## 10. Ringkasan Hasil Evaluasi (detail lengkap: `models/metrics.json`)
+
+Model final (dipilih HANYA dari val 2024, kriteria pra-run): **LSTM tunggal, seed 42**.
+
+**TEST 2025 (sekali evaluasi; Run 2 = class-weighted, mean±std 3 seed):**
+
+| Model | MAE (lap) | ±3 lap | ±5 lap | acc | F1-makro |
+|---|---|---|---|---|---|
+| Baseline mayoritas | 7,37 | 29,6% | 46,3% | 43,1% | 0,151 |
+| Baseline tyre_life | 7,90 | 29,2% | 46,0% | 61,6% | 0,339 |
+| XGBoost | 6,69±0,05 | 34,1% | 50,9% | 53,8% | 0,27±0,00 |
+| **LSTM** | **5,99±0,06** | **35,3%** | **54,1%** | 44,8% | **0,34±0,01** |
+| Hybrid | 6,77±0,13 | 34,2% | 51,3% | 35,1% | 0,26±0,03 |
+
+Temuan jujur: (a) Hybrid TIDAK mengungguli LSTM pada kedua run; (b) class
+weight (Run 2) menaikkan recall kelas minoritas tetapi menurunkan F1-makro
+LSTM vs Run 1 (0,374→0,347 di test); (c) WET tidak dapat dipelajari (84 baris
+train, 0 baris test 2025); (d) MAE per jarak: model ML paling lemah pada
+bucket >15 lap (8,8–13,8) — prediksi jangka jauh sulit; (e) ablation tanpa
+2021 menurunkan F1 LSTM di val (0,383→0,349).
+
+## 11. Keterbatasan (jujur)
 
 - Model mempelajari **keputusan aktual tim**, bukan strategi terbaik; bila tim
   salah keputusan, model meniru pola tersebut.
