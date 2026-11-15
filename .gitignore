@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# Data & model (ukuran besar, tidak masuk git)
+data/raw/
+data/processed/
+models/
+
+# Environment
+.env
+
+# OS
+Thumbs.db
+.DS_Store
