@@ -413,9 +413,10 @@ def _bentuk_target(df: pd.DataFrame) -> pd.DataFrame:
     df["target_next_compound"] = next_comp
 
     df = df.drop(columns=["_next_compound_row"], errors="ignore")
-    # Baris training = punya kedua target
-    df = df[df["target_laps_remaining"].notna() & df["target_next_compound"].notna()].copy()
-    df["target_next_compound"] = df["target_next_compound"].astype("category")
+    # Tandai baris yang punya ground truth lengkap (untuk training).
+    # Baris tanpa target (stint terakhir / DNF) TETAP disimpan di file
+    # inference agar API bisa memprediksi lap mana pun.
+    df["has_target"] = df["target_laps_remaining"].notna() & df["target_next_compound"].notna()
     return df
 
 
@@ -454,17 +455,31 @@ def bangun_dataset() -> pd.DataFrame:
     df = df[df["season"].isin(s.seasons)]
 
     kolom_akhir = (KOLOM_KUNCI + KONTEKS_NON_FITUR + FITUR_PRA_NUMERIK
-                   + FITUR_INRACE_NUMERIK + KOLOM_TARGET)
+                   + FITUR_INRACE_NUMERIK + KOLOM_TARGET + ["has_target"])
     df = df[[c for c in kolom_akhir if c in df.columns]].copy()
     df = df.sort_values(["season", "round", "driver_code", "lap_number"]).reset_index(drop=True)
 
+    # 1) File inference: SEMUA lap (dipakai API replay, termasuk stint terakhir)
+    out_inf = PROCESSED / "lap_inference.parquet"
+    df.to_parquet(out_inf)
+    logger.info("Dataset inference tersimpan: %s (%d baris)", out_inf, len(df))
+
+    # 2) File training: hanya baris dengan target lengkap
+    train_df = df[df["has_target"]].drop(columns=["has_target"]).copy()
+    train_df["target_next_compound"] = train_df["target_next_compound"].astype(str)
     out = PROCESSED / "lap_dataset.parquet"
-    df.to_parquet(out)
-    logger.info("Dataset tersimpan: %s (%d baris, kolom=%d)", out, len(df), len(df.columns))
-    logger.info("Distribusi split: %s", df["split"].value_counts().to_dict())
+    train_df.to_parquet(out)
+    logger.info("Dataset training tersimpan: %s (%d baris, kolom=%d)",
+                out, len(train_df), len(train_df.columns))
+    logger.info("Distribusi split: %s", train_df["split"].value_counts().to_dict())
     logger.info("Distribusi target compound: %s",
-                df["target_next_compound"].value_counts().to_dict())
-    return df
+                train_df["target_next_compound"].value_counts().to_dict())
+    return train_df
+
+
+def muat_dataset_inference() -> pd.DataFrame:
+    """Muat dataset SEMUA lap (untuk inference API replay)."""
+    return pd.read_parquet(PROCESSED / "lap_inference.parquet")
 
 
 def muat_dataset() -> pd.DataFrame:

@@ -76,6 +76,18 @@ class JolpicaClient:
                 data = resp.json()
                 file_cache.write_text(json.dumps(data), encoding="utf-8")
                 return data
+            except httpx.HTTPStatusError as exc:
+                # 4xx (selain 429) = kesalahan permanen, tidak perlu di-retry
+                if 400 <= exc.response.status_code < 500 and exc.response.status_code != 429:
+                    logger.error("Permintaan ditolak permanen (%d): %s",
+                                 exc.response.status_code, url)
+                    raise
+                if percobaan == _MAKS_PERCOBAAN:
+                    raise
+                logger.warning("Percobaan %d/%d gagal untuk %s (%s). Tunggu %.1f detik...",
+                               percobaan, _MAKS_PERCOBAAN, url, exc, backoff)
+                time.sleep(backoff)
+                backoff *= 2
             except (httpx.HTTPError, json.JSONDecodeError) as exc:
                 if percobaan == _MAKS_PERCOBAAN:
                     logger.error("Gagal mengambil %s setelah %d percobaan: %s",

@@ -31,9 +31,21 @@ RAW = PROJECT_ROOT / "data" / "raw"
 
 
 def _races_per_musim(client: JolpicaClient, musim: int, endpoint: str,
-                     record_key: str) -> pd.DataFrame:
-    """Ambil data bersarang per-race (results/qualifying/sprint/pitstops)."""
-    races = client.get_semua_halaman(f"{musim}/{endpoint}.json", ["RaceTable", "Races"])
+                     record_key: str, per_round: bool = False) -> pd.DataFrame:
+    """Ambil data bersarang per-race (results/qualifying/sprint/pitstops).
+
+    Bila per_round=True, endpoint dipanggil per round (`{musim}/{round}/...`)
+    karena Ergast/Jolpica tidak mendukung `{musim}/pitstops.json` langsung.
+    """
+    if per_round:
+        jadwal = client.get_semua_halaman(f"{musim}.json", ["RaceTable", "Races"])
+        races = []
+        for r in jadwal:
+            sub = client.get_semua_halaman(
+                f"{musim}/{r['round']}/{endpoint}.json", ["RaceTable", "Races"])
+            races.extend(sub)
+    else:
+        races = client.get_semua_halaman(f"{musim}/{endpoint}.json", ["RaceTable", "Races"])
     baris: list[dict] = []
     for r in races:
         for item in r.get(record_key, []):
@@ -64,9 +76,11 @@ def main() -> None:
     pd.concat(semua, ignore_index=True).to_parquet(RAW / "jolpica_races.parquet")
 
     # 2) Data bersarang per race
-    for endpoint, key in [("results", "Results"), ("qualifying", "QualifyingResults"),
-                          ("sprint", "SprintResults"), ("pitstops", "PitStops")]:
-        semua = [_races_per_musim(client, m, endpoint, key) for m in s.seasons]
+    for endpoint, key, per_round in [("results", "Results", False),
+                                     ("qualifying", "QualifyingResults", False),
+                                     ("sprint", "SprintResults", False),
+                                     ("pitstops", "PitStops", True)]:
+        semua = [_races_per_musim(client, m, endpoint, key, per_round) for m in s.seasons]
         semua = [d for d in semua if not d.empty]
         if semua:
             pd.concat(semua, ignore_index=True).to_parquet(RAW / f"jolpica_{endpoint}.parquet")
