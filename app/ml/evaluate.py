@@ -1,16 +1,19 @@
-"""Evaluasi model sesuai metrik laporan (subbab 2.2.9) + permintaan pengguna.
+"""Evaluasi model — metrik sesuai laporan (subbab 2.2.9) + permintaan pengguna.
 
-Jalankan SETELAH training (dan idealnya HANYA SEKALI untuk split test):
+Jalankan SETELAH training multi-seed selesai:
     python -m app.ml.evaluate
 
-Isi laporan:
-- Baseline (mayoritas & aturan tyre_life), XGBoost, LSTM, Hybrid.
-- Regresi laps remaining: MAE, RMSE, dalam-±1-lap.
-- Klasifikasi compound: accuracy, precision/recall/F1 MACRO + PER KELAS,
+Perilaku:
+- Run 2 (model hasil training class-weighted, artefak dipilih via selection.json)
+  dievaluasi pada val 2024 dan test 2025.
+- Run 1 (backup models/run1, tanpa class weight) dievaluasi ulang dengan metrik
+  yang sama agar perbandingan adil — tidak ada keputusan apa pun dari test.
+- Metrik regresi: MAE, RMSE, hit rate ±1/±3/±5 lap, MAE per jarak ke pit
+  (0-5, 6-15, >15 lap).
+- Metrik klasifikasi: accuracy, precision/recall/F1 makro + per kelas,
   confusion matrix.
-- Analisis ablation (tanpa 2021 di train) HANYA pada val — split test tetap
-  dievaluasi sekali untuk model utama agar tidak terjadi "test peeking".
-- Semua hasil disimpan ke models/metrics.json.
+- Semua hasil disimpan: models/metrics.json (Run 2) dan
+  models/metrics_run1_extended.json (Run 1).
 """
 from __future__ import annotations
 
@@ -40,11 +43,23 @@ logger = logging.getLogger("evaluate")
 
 
 def _metrik_regresi(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
+    """MAE/RMSE + hit rate ±1/±3/±5 lap + MAE per jarak ke pit (bucket y_true)."""
+    y_true = np.asarray(y_true, dtype=float)
     y_pred_clip = np.clip(np.asarray(y_pred, dtype=float), 0, None)
+    err = np.abs(y_true - y_pred_clip)
+
+    def mae(mask: np.ndarray) -> float | None:
+        return round(float(err[mask].mean()), 4) if mask.any() else None
+
     return {
-        "mae": round(float(mean_absolute_error(y_true, y_pred_clip)), 4),
+        "mae": round(float(err.mean()), 4),
         "rmse": round(float(np.sqrt(mean_squared_error(y_true, y_pred_clip))), 4),
-        "dalam_1_lap": round(float(np.mean(np.abs(y_true - y_pred_clip) <= 1.0)), 4),
+        "dalam_1_lap": round(float(np.mean(err <= 1.0)), 4),
+        "dalam_3_lap": round(float(np.mean(err <= 3.0)), 4),
+        "dalam_5_lap": round(float(np.mean(err <= 5.0)), 4),
+        "mae_jarak_0_5": mae(y_true <= 5),
+        "mae_jarak_6_15": mae((y_true > 5) & (y_true <= 15)),
+        "mae_jarak_gt15": mae(y_true > 15),
     }
 
 
@@ -71,15 +86,13 @@ def _metrik_klasifikasi(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
 
 def _cetak_confusion(cm: list[list[int]], judul: str) -> None:
     print(f"  Confusion matrix ({judul}) — baris=aktual, kolom=prediksi:")
-    head = "        " + "".join(f"{c[:5]:>7}" for c in COMPOUNDS)
-    print(head)
+    print("        " + "".join(f"{c[:5]:>7}" for c in COMPOUNDS))
     for nama, baris in zip(COMPOUNDS, cm):
         print(f"{nama[:6]:<8}" + "".join(f"{v:>7}" for v in baris))
 
 
 def _prediksi_nn(mode: str, suffix: str, md: Path, d: pd.DataFrame,
                  pre: Preprocessor, xgb_reg=None, xgb_clf=None):
-    """Inference model NN (lstm/hybrid) -> (pred_laps, proba)."""
     if mode == "lstm":
         M = ds.fitur_lstm(d, pre)
     else:
@@ -97,22 +110,25 @@ def _prediksi_nn(mode: str, suffix: str, md: Path, d: pd.DataFrame,
 
 
 def evaluasi_satu_split(d: pd.DataFrame, md: Path, suffix: str = "",
+                        suffix_map: dict | None = None,
                         dengan_baseline: bool = True) -> dict:
-    """Evaluasi semua model pada satu split dataframe."""
-    pre = Preprocessor.muat(md / f"preprocessor{suffix}.pkl")
-    y_reg = d["target_laps_remaining"].to_numpy(dtype=np.float32)
-    y_cls = ds.target_dari_df(d, pre)
+    """Evaluasi baseline + XGB + LSTM + Hybrid pada satu split.
+
+    suffix_map memungkinkan tiap tipe model memakai artefak seed berbeda
+    (mis. {"xgboost": "_s42", "lstm": "_s43", "hybrid": "_s42",
+           "pre_xgb": "_s42", "pre_lstm": "_s43", "pre_hybrid": "_s42"}).
+    """
+    sm = suffix_map or {k: suffix for k in
+                        ("xgboost", "lstm", "hybrid", "pre_xgb", "pre_lstm", "pre_hybrid")}
     hasil: dict = {"n_rows": int(len(d))}
 
-    X_xgb = ds.fitur_xgb(d, pre)
-    reg_path = md / f"xgb_laps{suffix}.json"
-    clf_path = md / f"xgb_compound{suffix}.json"
-    reg = clf = None
-    if reg_path.exists():
-        reg = XGBRegressor(); reg.load_model(reg_path)
-        clf = XGBClassifier(); clf.load_model(clf_path)
+    # Target memakai preprocessor mana pun hasil fit train yang sama —
+    # encoder compound bersifat deterministik; pakai pre lstm.
+    pre_any = Preprocessor.muat(md / f"preprocessor{sm['pre_lstm']}.pkl")
+    y_reg = d["target_laps_remaining"].to_numpy(dtype=np.float32)
+    y_cls = ds.target_dari_df(d, pre_any)
 
-    if dengan_baseline:
+    if dengan_baseline and (md / "baselines.json").exists():
         mayor, tyre = muat_baselines(md / "baselines.json")
         hasil["baseline_mayoritas"] = {
             "laps_remaining": _metrik_regresi(y_reg, mayor.predict_laps(d)),
@@ -123,19 +139,33 @@ def evaluasi_satu_split(d: pd.DataFrame, md: Path, suffix: str = "",
             "compound": _metrik_klasifikasi(y_cls, tyre.predict_compound(d)),
         }
 
-    if reg is not None:
+    # --- XGBoost ---
+    if (md / f"xgb_laps{sm['xgboost']}.json").exists():
+        pre_x = Preprocessor.muat(md / f"preprocessor{sm['pre_xgb']}.pkl")
+        reg = XGBRegressor(); reg.load_model(md / f"xgb_laps{sm['xgboost']}.json")
+        clf = XGBClassifier(); clf.load_model(md / f"xgb_compound{sm['xgboost']}.json")
+        X_flat = ds.fitur_xgb(d, pre_x)
         hasil["xgboost"] = {
-            "laps_remaining": _metrik_regresi(y_reg, reg.predict(X_xgb)),
-            "compound": _metrik_klasifikasi(y_cls, clf.predict(X_xgb)),
+            "laps_remaining": _metrik_regresi(y_reg, reg.predict(X_flat)),
+            "compound": _metrik_klasifikasi(y_cls, clf.predict(X_flat)),
         }
-    if (md / f"lstm{suffix}_model.pt").exists():
-        pl, pr = _prediksi_nn("lstm", suffix, md, d, pre)
+
+    # --- LSTM ---
+    if (md / f"lstm{sm['lstm']}_model.pt").exists():
+        pre_l = Preprocessor.muat(md / f"preprocessor{sm['pre_lstm']}.pkl")
+        pl, pr = _prediksi_nn("lstm", sm["lstm"], md, d, pre_l)
         hasil["lstm"] = {
             "laps_remaining": _metrik_regresi(y_reg, pl),
             "compound": _metrik_klasifikasi(y_cls, pr.argmax(1)),
         }
-    if (md / f"hybrid{suffix}_model.pt").exists() and reg is not None:
-        pl, pr = _prediksi_nn("hybrid", suffix, md, d, pre, reg, clf)
+
+    # --- Hybrid (fitur XGB dari seed yang sama dengan hybrid) ---
+    if (md / f"hybrid{sm['hybrid']}_model.pt").exists() \
+            and (md / f"xgb_laps{sm['hybrid']}.json").exists():
+        pre_h = Preprocessor.muat(md / f"preprocessor{sm['pre_hybrid']}.pkl")
+        reg = XGBRegressor(); reg.load_model(md / f"xgb_laps{sm['hybrid']}.json")
+        clf = XGBClassifier(); clf.load_model(md / f"xgb_compound{sm['hybrid']}.json")
+        pl, pr = _prediksi_nn("hybrid", sm["hybrid"], md, d, pre_h, reg, clf)
         hasil["hybrid"] = {
             "laps_remaining": _metrik_regresi(y_reg, pl),
             "compound": _metrik_klasifikasi(y_cls, pr.argmax(1)),
@@ -144,16 +174,18 @@ def evaluasi_satu_split(d: pd.DataFrame, md: Path, suffix: str = "",
 
 
 def cetak_ringkasan(nama_split: str, hasil: dict) -> None:
-    print(f"\n{'='*78}\n=== {nama_split} ({hasil['n_rows']} baris) ===")
-    print(f"{'model':<22}{'MAE':>7}{'RMSE':>8}{'+-1lap':>8}{'acc':>8}"
-          f"{'P-makro':>9}{'R-makro':>9}{'F1-makro':>10}")
+    print(f"\n{'='*94}\n=== {nama_split} ({hasil['n_rows']} baris) ===")
+    print(f"{'model':<22}{'MAE':>6}{'RMSE':>7}{'±1':>6}{'±3':>6}{'±5':>6}"
+          f"{'MAE0-5':>8}{'MAE6-15':>8}{'MAE>15':>8}{'acc':>7}{'F1-makro':>9}")
     for model, m in hasil.items():
         if model == "n_rows":
             continue
         r, c = m["laps_remaining"], m["compound"]
-        print(f"{model:<22}{r['mae']:>7.2f}{r['rmse']:>8.2f}{r['dalam_1_lap']:>8.1%}"
-              f"{c['accuracy']:>8.1%}{c['precision_macro']:>9.3f}"
-              f"{c['recall_macro']:>9.3f}{c['f1_macro']:>10.3f}")
+        f = lambda v: f"{v:.2f}" if isinstance(v, (int, float)) else "  -"
+        print(f"{model:<22}{f(r['mae']):>6}{f(r['rmse']):>7}{r['dalam_1_lap']:>6.1%}"
+              f"{r['dalam_3_lap']:>6.1%}{r['dalam_5_lap']:>6.1%}"
+              f"{f(r['mae_jarak_0_5']):>8}{f(r['mae_jarak_6_15']):>8}"
+              f"{f(r['mae_jarak_gt15']):>8}{c['accuracy']:>7.1%}{c['f1_macro']:>9.3f}")
     for model, m in hasil.items():
         if model == "n_rows":
             continue
@@ -169,31 +201,44 @@ def main() -> None:
     s = get_settings()
     md = s.models_dir
     df = ds.urutkan_per_lap(muat_dataset())
-
-    hasil: dict = {"evaluated_at": datetime.now(timezone.utc).isoformat()}
-
-    # ---- Model utama: val + test (test HANYA di sini, sekali) ----
     d_val = df[df["split"] == "val"].reset_index(drop=True)
     d_test = df[df["split"] == "test"].reset_index(drop=True)
-    hasil["val"] = evaluasi_satu_split(d_val, md)
-    hasil["test"] = evaluasi_satu_split(d_test, md)
-    cetak_ringkasan("VAL 2024", hasil["val"])
-    cetak_ringkasan("TEST 2025 (sekali, akhir)", hasil["test"])
 
-    # ---- Analisis ablation tanpa 2021: HANYA val (test tidak disentuh lagi) ----
-    if (md / "preprocessor_no2021.pkl").exists():
-        d_train21 = df[(df["split"] == "train") & (df["season"] == 2021)]
-        hasil["ablation_no2021_val"] = evaluasi_satu_split(
-            d_val, md, suffix="_no2021", dengan_baseline=False)
-        cetak_ringkasan("ABLATION tanpa-2021 @ VAL 2024", hasil["ablation_no2021_val"])
-        hasil["ablation_catatan"] = {
-            "baris_2021_dibuang": int(len(d_train21)),
-            "keterangan": ("Ablation hanya dievaluasi pada val 2024 agar split "
-                           "test tetap sekali pakai untuk model utama."),
+    keluaran: dict = {"evaluated_at": datetime.now(timezone.utc).isoformat()}
+
+    # ---------- RUN 2 (model class-weighted, artefak pilihan selection.json) ----------
+    sel_path = md / "selection.json"
+    if sel_path.exists():
+        sel = json.loads(sel_path.read_text())
+        art = sel["artifacts"]
+        smap = {"xgboost": art["xgboost"], "lstm": art["lstm"], "hybrid": art["hybrid"],
+                "pre_xgb": art["xgboost"], "pre_lstm": art["lstm"],
+                "pre_hybrid": art["hybrid"]}
+        keluaran["run2_primary_model"] = sel["primary_model"]
+        keluaran["run2_artifacts"] = art
+    else:
+        smap = None
+    keluaran["run2"] = {
+        "val": evaluasi_satu_split(d_val, md, suffix_map=smap),
+        "test": evaluasi_satu_split(d_test, md, suffix_map=smap),
+    }
+    cetak_ringkasan("RUN 2 — VAL 2024", keluaran["run2"]["val"])
+    cetak_ringkasan("RUN 2 — TEST 2025 (evaluasi sekali, akhir)", keluaran["run2"]["test"])
+
+    # ---------- RUN 1 (backup, tanpa class weight) — metrik sama utk perbandingan ----------
+    md1 = md / "run1"
+    if (md1 / "preprocessor.pkl").exists():
+        keluaran["run1"] = {
+            "val": evaluasi_satu_split(d_val, md1),
+            "test": evaluasi_satu_split(d_test, md1),
         }
+        cetak_ringkasan("RUN 1 (lama) — VAL 2024", keluaran["run1"]["val"])
+        cetak_ringkasan("RUN 1 (lama) — TEST 2025", keluaran["run1"]["test"])
+        (md / "metrics_run1_extended.json").write_text(
+            json.dumps(keluaran["run1"], indent=2))
 
-    (md / "metrics.json").write_text(json.dumps(hasil, indent=2))
-    print(f"\nMetrik lengkap tersimpan: {md / 'metrics.json'}")
+    (md / "metrics.json").write_text(json.dumps(keluaran, indent=2))
+    print(f"\nMetrik lengkap: {md / 'metrics.json'}")
 
 
 if __name__ == "__main__":

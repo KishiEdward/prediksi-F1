@@ -2,6 +2,10 @@
 
 Predictor hanya bekerja dengan RaceStateProvider — ia tidak tahu (dan tidak
 peduli) apakah data datang dari replay historis atau live timing.
+
+Model yang dimuat mengikuti models/selection.json (hasil pemilihan berbasis
+val 2024): primary_model bisa "hybrid" atau "lstm", dengan suffix artefak
+per seed. Bila selection.json tidak ada, fallback ke artef hybrid polos.
 """
 from __future__ import annotations
 
@@ -30,13 +34,27 @@ class ModelBelumSiapError(RuntimeError):
 
 
 class Predictor:
-    """Wadah model hybrid (XGBoost + LSTM) untuk inference."""
+    """Wadah model final (LSTM atau Hybrid XGBoost-LSTM) untuk inference."""
 
     def __init__(self, models_dir: Path | None = None) -> None:
         md = models_dir or get_settings().models_dir
-        wajib = [md / "preprocessor.pkl", md / "xgb_laps.json",
-                 md / "xgb_compound.json", md / "hybrid_model.pt",
-                 md / "hybrid_config.json", md / "metadata.json"]
+
+        # Tentukan model utama + suffix artefak dari selection.json
+        self.primary = "hybrid"
+        suffix = ""
+        sel_path = md / "selection.json"
+        if sel_path.exists():
+            sel = json.loads(sel_path.read_text())
+            self.primary = sel.get("primary_model", "hybrid")
+            suffix = sel.get("artifacts", {}).get(self.primary, "")
+        self.suffix = suffix
+
+        wajib = [md / f"preprocessor{suffix}.pkl",
+                 md / f"{self.primary}{suffix}_model.pt",
+                 md / f"{self.primary}{suffix}_config.json",
+                 md / "metadata.json"]
+        if self.primary == "hybrid":
+            wajib += [md / f"xgb_laps{suffix}.json", md / f"xgb_compound{suffix}.json"]
         hilang = [str(p) for p in wajib if not p.exists()]
         if hilang:
             raise ModelBelumSiapError(
@@ -44,14 +62,18 @@ class Predictor:
                 + ". Jalankan `python -m app.ml.train` dulu.")
 
         self.models_dir = md
-        self.pre = Preprocessor.muat(md / "preprocessor.pkl")
-        self.reg = XGBRegressor(); self.reg.load_model(md / "xgb_laps.json")
-        self.clf = XGBClassifier(); self.clf.load_model(md / "xgb_compound.json")
-        self.config = json.loads((md / "hybrid_config.json").read_text())
-        self.nn = muat_model(md / "hybrid_model.pt", self.config["arsitektur"])
+        self.pre = Preprocessor.muat(md / f"preprocessor{suffix}.pkl")
+        if self.primary == "hybrid":
+            self.reg = XGBRegressor(); self.reg.load_model(md / f"xgb_laps{suffix}.json")
+            self.clf = XGBClassifier(); self.clf.load_model(md / f"xgb_compound{suffix}.json")
+        else:
+            self.reg = self.clf = None
+        self.config = json.loads((md / f"{self.primary}{suffix}_config.json").read_text())
+        self.nn = muat_model(md / f"{self.primary}{suffix}_model.pt",
+                             self.config["arsitektur"])
         self.window = int(self.config.get("window", WINDOW_LAP))
         self.metadata = json.loads((md / "metadata.json").read_text())
-        logger.info("Model hybrid v%s dimuat dari %s",
+        logger.info("Model %s%s v%s dimuat dari %s", self.primary, suffix,
                     self.metadata.get("model_version", "?"), md)
 
     # ------------------------------------------------------------------
@@ -61,15 +83,21 @@ class Predictor:
         p = self.models_dir / "metrics.json"
         if p.exists():
             m = json.loads(p.read_text())
-            metrik = {split: {model: {
-                "laps_remaining": v["laps_remaining"],
-                "compound": {k: val for k, val in v["compound"].items()
-                             if k != "confusion_matrix"},
-            } for model, v in d.items() if model != "n_rows"}
-                for split, d in m.items() if split in ("val", "test")}
+            run = m.get("run2", m)  # dukung format lama & baru
+            metrik = {}
+            for split in ("val", "test"):
+                if split in run and self.primary in run[split]:
+                    v = run[split][self.primary]
+                    metrik[split] = {
+                        "laps_remaining": v["laps_remaining"],
+                        "compound": {k: val for k, val in v["compound"].items()
+                                     if k != "confusion_matrix"},
+                    }
         return {
             "model_version": self.metadata.get("model_version", "?"),
             "trained_at": self.metadata.get("trained_at"),
+            "primary_model": self.primary,
+            "artifact_suffix": self.suffix,
             "metrics": metrik,
             "window_lap": self.window,
             "compounds": COMPOUNDS,
@@ -81,9 +109,8 @@ class Predictor:
                           driver_code: str) -> PrediksiPembalap | None:
         """Prediksi untuk satu pembalap pada lap `state.lap`.
 
-        Langkah: ambil riwayat lap 1..N pembalap (hanya info sampai lap N),
-        hitung fitur flat -> estimasi awal XGBoost per baris -> rakit fitur
-        hybrid -> sliding window -> LSTM -> dua head keluaran.
+        Riwayat lap 1..N (hanya info sampai lap N) -> fitur -> sliding window
+        -> LSTM (dengan estimasi awal XGBoost per timestep bila hybrid).
         """
         hist = provider.get_driver_history(state.year, state.round,
                                            driver_code, state.lap)
@@ -93,13 +120,14 @@ class Predictor:
             return None
 
         baris_terakhir = hist.iloc[-1]
-        X_flat = ds.fitur_xgb(hist, self.pre)
-        laps_xgb = self.reg.predict(X_flat)
-        proba_xgb = ds.proba_compound_full(self.clf, X_flat)
-        M = ds.fitur_hybrid(hist, self.pre, laps_xgb, proba_xgb)
+        if self.primary == "hybrid":
+            X_flat = ds.fitur_xgb(hist, self.pre)
+            laps_xgb = self.reg.predict(X_flat)
+            proba_xgb = ds.proba_compound_full(self.clf, X_flat)
+            M = ds.fitur_hybrid(hist, self.pre, laps_xgb, proba_xgb)
+        else:
+            M = ds.fitur_lstm(hist, self.pre)
 
-        # Ambil maksimum `window` baris terakhir; bangun_sequences melakukan
-        # edge-padding bila riwayat lebih pendek dari window (awal race).
         kolom = [f"f{i}" for i in range(M.shape[1])]
         sub = pd.DataFrame(M[-self.window:], columns=kolom)
         seq = bangun_sequences(sub, kolom, window=self.window)[-1:]
