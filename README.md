@@ -147,6 +147,18 @@ python -m app.ml.evaluate
 | LSTM melihat "masa depan" | LSTM **satu arah** (bukan BiLSTM), window 5 lap ke belakang | `app/ml/nn.py` |
 | Verifikasi | Unit test khusus leakage (sequence, shift, target stint, scaler train-only, split kronologis) | `tests/test_leakage.py` |
 
+## 6b. Perlakuan Kasus Khusus (sesuai Bab III)
+
+| Kasus | Perlakuan | Dasar |
+|---|---|---|
+| Pit stop di bawah **red flag** | Dibuang dari target (ganti ban gratis saat red flag bukan keputusan strategi) | Subbab 1.4: kondisi Red Flag = kondisi khusus prapemrosesan |
+| **Sprint race** | Tidak dimodelkan sebagai race; hanya balapan utama. Hasil sprint dipakai sebagai fitur pra-balapan (`sprint_position`) | Subbab 3.1.2: lingkup = balapan utama |
+| Pit stop saat **SC/VSC** | Tetap dipakai (keputusan strategis nyata); SC/VSC menjadi fitur input | Subbab 1.4 & 3.2.3 |
+| Pit di **lap terakhir** | Dibuang (bukan keputusan strategi) | Prapemrosesan data |
+| Compound **UNKNOWN/kosong** (terutama 2021) | Baris tanpa compound target valid tidak dipakai training; compound berjalan tak dikenal → one-hot nol semua | Elisitasi #6 (menangani data tidak lengkap) |
+| Lap **tidak akurat / dihapus** (in/out lap) | Dibuang dari fitur; sequence LSTM sedikit terkompresi (didokumentasikan) | Kualitas data |
+| Stint terakhir / **DNF** tanpa pit berikutnya | Disimpan untuk inference tetapi tanpa target (tidak dipakai training) | Target = pit berikutnya (subbab 2.2.7) |
+
 ## 7. Menjalankan API
 
 ```bash
@@ -262,6 +274,9 @@ aturan 2 pembalap per tim, dan **unit test anti-leakage temporal**.
 - Data publik (FastF1) tidak memuat semua informasi internal tim (suhu ban
   detail, beban bahan bakar, dsb.) — prediksi pasti kalah informasi dibanding
   pit wall sungguhan.
+- **Data latihan bebas (FP) tidak tersedia**: Jolpica menolak endpoint practice
+  ("Endpoint does not support final filter"), sehingga fitur hasil FP tidak
+  dibentuk. "Hasil sesi sebelumnya" (Bab III) tetap tercakup kualifikasi + sprint.
 - Kelas INTERMEDIATE/WET sangat jarang sehingga akurasinya lebih rendah
   (lihat F1 per kelas di `models/metrics.json`).
 - Undercut/overcut adalah keputusan taktis manusia; deviasi 1–3 lap antara
