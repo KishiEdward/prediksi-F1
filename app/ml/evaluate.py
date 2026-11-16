@@ -25,10 +25,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import torch
-from sklearn.metrics import (accuracy_score, confusion_matrix, f1_score,
-                             mean_absolute_error, mean_squared_error,
-                             precision_recall_fscore_support, precision_score,
-                             recall_score)
+from sklearn.metrics import (accuracy_score, confusion_matrix,
+                             mean_squared_error,
+                             precision_recall_fscore_support)
 from xgboost import XGBClassifier, XGBRegressor
 
 from app.config import get_settings
@@ -64,17 +63,30 @@ def _metrik_regresi(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
 
 
 def _metrik_klasifikasi(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
+    """Metrik klasifikasi compound dengan KONVENSI MAKRO KONSISTEN.
+
+    Konvensi (dipakai seragam untuk Run 1/2/3): macro-precision/recall/F1
+    dihitung HANYA atas kelas yang punya sampel nyata di y_true (support > 0).
+    Kelas tanpa sampel nyata di y_true (mis. WET di test 2025) DIKECUALIKAN dari
+    macro — bukan dihitung sebagai F1=0, dan juga tidak diam-diam di-drop lewat
+    label inferred dari union(y_true, y_pred). per_kelas tetap melaporkan SEMUA
+    kelas (termasuk support 0) untuk transparansi.
+    """
     labels = list(range(len(COMPOUNDS)))
+    y_true = np.asarray(y_true)
     prec, rec, f1, supp = precision_recall_fscore_support(
         y_true, y_pred, labels=labels, average=None, zero_division=0)
+    present = [i for i in labels if supp[i] > 0]
+
+    def _macro(arr: np.ndarray) -> float:
+        return round(float(np.mean([arr[i] for i in present])), 4) if present else 0.0
+
     return {
         "accuracy": round(float(accuracy_score(y_true, y_pred)), 4),
-        "precision_macro": round(float(precision_score(y_true, y_pred, average="macro",
-                                                       zero_division=0)), 4),
-        "recall_macro": round(float(recall_score(y_true, y_pred, average="macro",
-                                                 zero_division=0)), 4),
-        "f1_macro": round(float(f1_score(y_true, y_pred, average="macro",
-                                         zero_division=0)), 4),
+        "precision_macro": _macro(prec),
+        "recall_macro": _macro(rec),
+        "f1_macro": _macro(f1),
+        "macro_over_classes": [COMPOUNDS[i] for i in present],
         "per_kelas": {
             c: {"precision": round(float(p), 4), "recall": round(float(r), 4),
                 "f1": round(float(f), 4), "support": int(s)}
@@ -82,6 +94,7 @@ def _metrik_klasifikasi(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
         },
         "confusion_matrix": confusion_matrix(y_true, y_pred, labels=labels).tolist(),
     }
+
 
 
 def _cetak_confusion(cm: list[list[int]], judul: str) -> None:

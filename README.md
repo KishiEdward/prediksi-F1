@@ -181,13 +181,33 @@ python -m app.ml.evaluate             # evaluasi Run 1+2 -> models/metrics.json
 
 | Kasus | Perlakuan | Dasar |
 |---|---|---|
-| Pit stop di bawah **red flag** | Dibuang dari target (ganti ban gratis saat red flag bukan keputusan strategi) | Subbab 1.4: kondisi Red Flag = kondisi khusus prapemrosesan |
+| Pit stop di bawah **red flag** | *Diniatkan* dibuang dari target (ganti ban gratis saat red flag bukan keputusan strategi). **⚠️ STATUS AKTUAL (audit): TIDAK berfungsi** — lihat catatan di bawah. | Subbab 1.4: kondisi Red Flag = kondisi khusus prapemrosesan |
 | **Sprint race** | Tidak dimodelkan sebagai race; hanya balapan utama. Hasil sprint dipakai sebagai fitur pra-balapan (`sprint_position`) | Subbab 3.1.2: lingkup = balapan utama |
-| Pit stop saat **SC/VSC** | Tetap dipakai (keputusan strategis nyata); SC/VSC menjadi fitur input | Subbab 1.4 & 3.2.3 |
+| Pit stop saat **SC/VSC** | Tetap dipakai (keputusan strategis nyata). *Diniatkan* SC/VSC menjadi fitur input. **⚠️ STATUS AKTUAL (audit): fitur SC/VSC MATI (semua nol)** — lihat catatan di bawah. | Subbab 1.4 & 3.2.3 |
 | Pit di **lap terakhir** | Dibuang (bukan keputusan strategi) | Prapemrosesan data |
 | Compound **UNKNOWN/kosong** (terutama 2021) | Baris tanpa compound target valid tidak dipakai training; compound berjalan tak dikenal → one-hot nol semua | Elisitasi #6 (menangani data tidak lengkap) |
-| Lap **tidak akurat / dihapus** (in/out lap) | Dibuang dari fitur; sequence LSTM sedikit terkompresi (didokumentasikan) | Kualitas data |
+| Lap **tidak akurat / dihapus** (in/out lap) | Dibuang dari fitur; sequence LSTM sedikit terkompresi (didokumentasikan). **⚠️ Efek samping (audit): filter `IsAccurate` juga menghapus SEMUA lap SC/VSC** — lihat catatan. | Kualitas data |
 | Stint terakhir / **DNF** tanpa pit berikutnya | Disimpan untuk inference tetapi tanpa target (tidak dipakai training) | Target = pit berikutnya (subbab 2.2.7) |
+
+> **⚠️ Catatan koreksi (hasil audit teknis `audit/AUDIT_REPORT.md`, status SEBELUM perbaikan B1):**
+> 1. **Fitur status lintasan MATI.** `is_sc`, `is_vsc`, `is_red`, `laps_since_sc_vsc` konstan
+>    (nol); `is_green`/`is_yellow` nyaris konstan. Keenamnya punya importance = 0 di model.
+>    Akar: filter `IsAccurate == True` (`app/ml/features.py:279-282`) menghapus semua lap
+>    SC/VSC sebelum flag dibuat (FastF1 menandai lap SC/VSC sebagai tidak akurat), dan
+>    regex `str.extract(r"(\d)")` (`features.py:331`) hanya mengambil digit pertama dari
+>    kode multi-status (mis. "126" → "1"/GREEN, kehilangan VSC=6). Akibatnya klaim
+>    "SC/VSC menjadi fitur input" **belum terpenuhi**.
+> 2. **Pengecualian pit red-flag tidak pernah jalan.** `features.py:416` mengecek
+>    `track_status == "RED"`, tetapi `track_status` tak pernah bernilai "RED" di dataset
+>    (0 baris), jadi tidak ada pit red-flag yang dibuang. Klaim "dibuang dari target"
+>    **belum terpenuhi**.
+> 3. **Data kaya terbuang:** 112 file `data/raw/fastf1/*_trackstatus.parquet` (berisi
+>    interval Time+Status kode 1/2/4/5/6/7) sudah diekstrak tetapi **tidak dipakai**
+>    feature engineering.
+> 4. **Dampak:** ~28,7% pit terjadi saat SC/VSC dan ~8,5% saat RED (dari 4161 pit) —
+>    kondisi pemicu yang tidak terlihat model. Ini penyebab dominan terbatasnya akurasi
+>    (lihat audit). **Perbaikan dijadwalkan sebagai eksperimen B1** (mengaktifkan fitur
+>    status dari semua kode trackstatus, kausal, tanpa tuning ulang hyperparameter).
 
 ## 6c. Run 2 — Perubahan konfigurasi & protokol evaluasi
 
@@ -418,11 +438,24 @@ head biner "masih pit?" + pit window split-conformal. Versi 0.3.0.
 | R1 XGBoost | 6,75 | 12,0% | 33,4% | 50,6% | 4,53 | 5,10 | 10,48 | 0,340 | 0,551 |
 | R1 LSTM | 6,05 | 12,0% | 35,5% | 54,4% | 5,82 | 3,97 | **8,81** | 0,374 | 0,584 |
 | R1 Hybrid | 6,65 | 12,2% | 34,8% | 52,0% | 4,23 | 4,31 | 11,39 | 0,248 | 0,442 |
-| R2 XGBoost | 6,69±0,05 | — | — | — | — | — | — | 0,268±0,00 | 0,539±0,00 |
+| R2 XGBoost | 6,69±0,05 | — | — | — | — | — | — | 0,335±0,00 † | 0,539±0,00 |
 | R2 LSTM | **5,99±0,06** | — | 35,3% | 54,1% | 5,65 | 3,74 | 9,05 | 0,337±0,01 | 0,448±0,02 |
 | R2 Hybrid | 6,77±0,13 | — | — | — | — | — | — | 0,263±0,03 | 0,351±0,06 |
 | **R3 K03+K04** | 6,08 | 12,4% | **36,6%** | **55,6%** | 4,97 | 3,78 | 9,80 | **0,375** | 0,555 |
 | R3 binary head | — | — | — | — | — | — | — | acc 0,878 / F1 0,908 / AUC 0,954 | — |
+
+> **† Konvensi F1-makro (dikoreksi, konsisten semua run).** F1-makro kini dihitung
+> **hanya atas kelas yang punya sampel nyata di `y_true`** (`app/ml/evaluate.py::_metrik_klasifikasi`,
+> field `macro_over_classes`), bukan lagi atas label yang disimpulkan dari union
+> `y_true ∪ y_pred` (yang membuat antar-model tak sebanding). Di **test 2025 WET
+> punya 0 sampel** → makro dihitung atas 4 kelas {SOFT, MEDIUM, HARD, INTERMEDIATE}
+> untuk **semua** model secara seragam. Dampak satu-satunya yang material:
+> **R2 XGBoost test 0,268 → 0,335** — model itu dulu membuat ~89 false-positive WET,
+> yang di konvensi lama memasukkan WET (F1=0) ke macro hanya untuk model tersebut
+> sehingga tidak sebanding dengan model lain. Angka run lain **tidak berubah** (WET hadir di
+> val/CV → macro 5-kelas; di test model lain tidak memprediksi WET). Nilai F1 Run 3
+> (0,375) **tidak berubah** dan kini benar-benar sebanding. Hasil hitung ulang lengkap:
+> `models/metrics_corrected.json` (skrip `scripts/11_recompute_metrics.py`).
 
 ### 10.2 Temuan jujur (tidak disamarkan)
 
