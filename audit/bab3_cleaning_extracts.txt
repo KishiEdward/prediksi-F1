@@ -1,0 +1,32 @@
+# Ekstrak Bab III relevan — pembersihan data / SC-VSC / Red Flag
+(sumber: (4)F1-Bab-III-Prototype.docx; nomor = indeks paragraf)
+
+[para 136] Fitur yang digunakan dalam pemodelan dibagi menjadi data pra-balapan dan data in-race. Data pra-balapan meliputi performa pembalap, hasil kualifikasi atau posisi grid, dan karakteristik sirkuit. Data in-race meliputi metrik yang berubah selama balapan berlangsung, seperti lap time, tyre age, tyre compound saat ini, posisi, gap, serta status balapan seperti Safety Car dan Virtual Safety Car.
+
+[para 141] Keputusan pit stop dan pemilihan tyre compound yang tercatat dalam data diasumsikan merepresentasikan keputusan strategis tim. Kondisi anomali yang dapat memengaruhi keputusan pit stop di luar strategi balapan, seperti kerusakan akibat kecelakaan atau kondisi Red Flag, diperlakukan sebagai kondisi khusus dalam tahap prapemrosesan apabila dapat diidentifikasi berdasarkan data yang tersedia.
+
+[para 169] Pengumpulan data selama balapan dikumpulkan menggunakan FastF1. Data ini digunakan untuk memperoleh informasi yang berubah selama balapan, seperti lap time, posisi, gap, tyre compound, tyre age, pit stop, serta kondisi balapan (Safety Car/Virtual Safety Car) apabila tersedia secara konsisten.
+
+[para 390] Ketika sistem beralih ke fase operasional balapan, kelompok data in-race masuk sebagai aliran pembaruan kondisi (system updates) yang bersifat dinamis dan temporal. Variabel seperti lap time, tyre age, current tyre compound, posisi pembalap, gap, serta intervensi balapan (Safety Car/Virtual Safety Car) tidak berdiri secara independen. Dalam operasionalnya, variabel-variabel ini terus diperbarui dari satu lap ke lap berikutnya, menciptakan sebuah rangkaian ketergantungan urutan (sekuensial). Kondisi pada suatu lap tertentu merupakan kelanjutan langsung dari lap sebelumnya, sehingga sistem strategi harus memprosesnya sebagai data time-series untuk mendeteksi perubahan tren performa atau degradasi kendaraan.
+
+[para 403] Lap, lap time, tyre age, current tyre compound, position, gap, Safety Car/VSC
+
+[para 424] Setelah balapan dimulai, kondisi pembalap dan kendaraan berubah secara bertahap dari satu lap ke lap berikutnya. Informasi yang sebelumnya tersedia sebelum balapan kemudian dilengkapi dengan data aktual yang muncul selama kendaraan berada di lintasan, mencakup variabel-variabel in-race yang telah diuraikan pada subbab 3.1.3, yaitu lap time, tyre age, tyre compound yang sedang digunakan, posisi, gap, serta kondisi balapan seperti Safety Car dan Virtual Safety Car.
+
+[para 425] Pada setiap lap, berbagai variabel in-race tersebut saling melengkapi dalam membentuk gambaran kondisi balapan secara menyeluruh. Perubahan lap time menunjukkan perubahan performa, tyre age dan tyre compound memberikan konteks mengenai kondisi ban yang sedang digunakan, sedangkan posisi dan gap memberikan informasi mengenai kondisi kompetitif pembalap terhadap pembalap lain. Kondisi seperti Safety Car atau Virtual Safety Car turut memengaruhi situasi balapan dan strategi yang sedang berlangsung.
+
+[para 436] Status lintasan, sistem secara aktif mengevaluasi kondisi eksternal balapan, seperti sisa lap secara keseluruhan, serta ada tidaknya intervensi balapan (seperti Safety Car atau Virtual Safety Car).
+
+[para 455] Kondisi yang tersedia sebelum balapan tidak dapat menggambarkan seluruh keadaan yang mungkin terjadi selama perlombaan. Perubahan lap time, degradasi ban (tyre age), posisi pembalap, serta intervensi seperti Safety Car atau Virtual Safety Car dapat mengubah kondisi strategis selama balapan berlangsung. Oleh karena itu, pemodelan yang hanya menggunakan informasi statis memiliki keterbatasan dalam merepresentasikan perubahan kondisi tersebut. Diperlukan mekanisme yang mampu memperbarui prediksi berdasarkan informasi terbaru pada setiap lap.
+
+[para 531] Sistem dapat memproses variabel in-race seperti lap time, tyre age, tyre compound, posisi, gap, serta kondisi Safety Car atau Virtual Safety Car yang tersedia.
+
+[para 533] Sistem dapat menangani data yang tidak lengkap atau hilang pada variabel pra-balapan maupun in-race sebelum digunakan dalam proses pemodelan.
+
+[para 612] Menangani data tidak lengkap/hilang
+
+[para 730] Menangani data tidak lengkap/hilang
+
+[para 865] Sistem dapat memproses variabel in-race seperti lap time, tyre age, tyre compound, posisi, gap, serta kondisi Safety Car atau Virtual Safety Car yang tersedia.
+
+[para 867] Sistem dapat menangani data yang tidak lengkap atau hilang pada variabel pra-balapan maupun in-race sebelum digunakan dalam proses pemodelan.

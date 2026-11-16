@@ -266,20 +266,38 @@ def _muat_weather_trackstatus() -> tuple[pd.DataFrame, pd.DataFrame]:
 
 
 def _bangun_fitur_inrace(laps: pd.DataFrame, weather: pd.DataFrame,
-                         pra: pd.DataFrame) -> pd.DataFrame:
-    """Bangun fitur per lap. Hanya memakai informasi sampai lap berjalan."""
+                         pra: pd.DataFrame, *,
+                         keep_inaccurate: bool = False,
+                         status_all_codes: bool = False) -> pd.DataFrame:
+    """Bangun fitur per lap. Hanya memakai informasi sampai lap berjalan.
+
+    keep_inaccurate=False (default/produksi): buang lap IsAccurate!=True.
+    keep_inaccurate=True (eksperimen B1): pertahankan lap tidak akurat agar
+      konteks SC/VSC tersedia (Bab III para 136/533), dengan lap_time di-NaN-kan.
+    status_all_codes=False (default): digit pertama TrackStatus (perilaku lama).
+    status_all_codes=True (B1): parse SEMUA kode per lap (multi-hot).
+    """
     df = laps.rename(columns={"Driver": "driver_code", "LapNumber": "lap_number"}).copy()
     df = df[df["lap_number"].notna()]
     df["lap_number"] = df["lap_number"].astype(int)
     df["season"] = df["season"].astype(int)
     df["round"] = df["round"].astype(int)
 
-    # Hanya lap yang datanya akurat & tidak dihapus (kualitas data).
+    # Filter kualitas data.
     # Catatan: kolom `Deleted` bisa berisi None (bukan False) di beberapa musim.
-    if "IsAccurate" in df.columns:
-        df = df[df["IsAccurate"] == True]  # noqa: E712
+    # - Default (produksi): buang lap IsAccurate!=True. Efek samping: lap SC/VSC
+    #   ikut terbuang sehingga fitur status menjadi mati (temuan audit).
+    # - keep_inaccurate=True (B1): pertahankan lap tidak akurat agar konteks SC/VSC
+    #   tersedia, tetapi lap_time-nya di-NaN-kan supaya fitur turunan waktu tidak
+    #   dirusak nilai tak representatif. Lap Deleted tetap dibuang di kedua mode.
     if "Deleted" in df.columns:
         df = df[df["Deleted"].isna() | (df["Deleted"] == False)]  # noqa: E712
+    if "IsAccurate" in df.columns:
+        if keep_inaccurate:
+            tidak_akurat = df["IsAccurate"] != True  # noqa: E712
+            df.loc[tidak_akurat, "LapTime"] = np.nan
+        else:
+            df = df[df["IsAccurate"] == True]  # noqa: E712
 
     df = df.sort_values(["season", "round", "driver_code", "lap_number"]).reset_index(drop=True)
     grp = df.groupby(["season", "round", "driver_code"], group_keys=False, sort=False)
@@ -328,13 +346,29 @@ def _bangun_fitur_inrace(laps: pd.DataFrame, weather: pd.DataFrame,
     df["laps_to_race_end"] = df["total_laps"] - df["lap_number"]
 
     # --- Status lintasan ---
-    kode = df["TrackStatus"].astype("string").str.extract(r"(\d)")[0].fillna("1")
-    df["track_status"] = kode.map(TRACK_STATUS_MAP).fillna("OTHER")
-    df["is_green"] = (df["track_status"] == "GREEN").astype(float)
-    df["is_yellow"] = (df["track_status"] == "YELLOW").astype(float)
-    df["is_sc"] = (df["track_status"] == "SC").astype(float)
-    df["is_vsc"] = (df["track_status"] == "VSC").astype(float)
-    df["is_red"] = (df["track_status"] == "RED").astype(float)
+    ts_str = df["TrackStatus"].astype("string").fillna("")
+    if status_all_codes:
+        # B1: parse SEMUA kode per lap (multi-hot). TrackStatus bisa multi-kode
+        # mis "126" = GREEN+YELLOW+VSC terjadi dalam satu lap.
+        df["is_green"] = ts_str.str.contains("1").astype(float)
+        df["is_yellow"] = ts_str.str.contains("2").astype(float)
+        df["is_sc"] = ts_str.str.contains("4").astype(float)
+        df["is_red"] = ts_str.str.contains("5").astype(float)
+        df["is_vsc"] = ts_str.str.contains("6").astype(float)
+        # track_status kategorik = kondisi paling parah (untuk red-flag exclusion & API)
+        df["track_status"] = np.select(
+            [df["is_red"] == 1, df["is_vsc"] == 1, df["is_sc"] == 1,
+             df["is_yellow"] == 1, df["is_green"] == 1],
+            ["RED", "VSC", "SC", "YELLOW", "GREEN"], default="OTHER")
+    else:
+        # Perilaku lama/produksi: hanya digit pertama (BUG: kehilangan kode lain).
+        kode = ts_str.str.extract(r"(\d)")[0].fillna("1")
+        df["track_status"] = kode.map(TRACK_STATUS_MAP).fillna("OTHER")
+        df["is_green"] = (df["track_status"] == "GREEN").astype(float)
+        df["is_yellow"] = (df["track_status"] == "YELLOW").astype(float)
+        df["is_sc"] = (df["track_status"] == "SC").astype(float)
+        df["is_vsc"] = (df["track_status"] == "VSC").astype(float)
+        df["is_red"] = (df["track_status"] == "RED").astype(float)
     scvsc = (df["is_sc"] + df["is_vsc"]).clip(0, 1)
     # jumlah lap sejak SC/VSC terakhir (0 = sedang/lap ini; dibatasi 10)
     hitung = np.zeros(len(df))
@@ -464,10 +498,18 @@ def _bentuk_target(df: pd.DataFrame) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 # Pipeline utama
 # ---------------------------------------------------------------------------
-def bangun_dataset() -> pd.DataFrame:
-    """Bangun dataset final per lap dan simpan sebagai Parquet."""
+def bangun_dataset(out_dir: Path | None = None, *,
+                   keep_inaccurate: bool = False,
+                   status_all_codes: bool = False) -> pd.DataFrame:
+    """Bangun dataset final per lap dan simpan sebagai Parquet.
+
+    Default (out_dir=None, flag False) = perilaku produksi, TIDAK berubah.
+    Eksperimen B1: out_dir=PROCESSED/'b1', keep_inaccurate=True,
+    status_all_codes=True -> dataset terpisah, file produksi tidak tertimpa.
+    """
     s = get_settings()
-    PROCESSED.mkdir(parents=True, exist_ok=True)
+    out_root = Path(out_dir) if out_dir is not None else PROCESSED
+    out_root.mkdir(parents=True, exist_ok=True)
 
     logger.info("Membangun fitur pra-balapan...")
     pra = _bangun_fitur_prabalapan()
@@ -477,7 +519,9 @@ def bangun_dataset() -> pd.DataFrame:
     weather, _ = _muat_weather_trackstatus()
 
     logger.info("Membangun fitur in-race...")
-    df = _bangun_fitur_inrace(laps, weather, pra)
+    df = _bangun_fitur_inrace(laps, weather, pra,
+                              keep_inaccurate=keep_inaccurate,
+                              status_all_codes=status_all_codes)
 
     # Gabungkan fitur statis (join per season-round-driver_code)
     pra_join = pra.drop(columns=["country", "circuit_name", "finish_position",
@@ -490,6 +534,14 @@ def bangun_dataset() -> pd.DataFrame:
     logger.info("Membentuk target per stint...")
     df = _bentuk_target(df)
 
+    # Buang baris target==0 (lap tempat pit benar-benar terjadi). Untuk produksi
+    # ini NO-OP (lap pit sudah terfilter IsAccurate sehingga tak ada target 0);
+    # untuk B1 (keep_inaccurate) ini menjaga definisi target tetap min=1,
+    # konsisten dengan baseline, agar perbandingan MAE tidak dicurangi baris
+    # trivial target-0.
+    df = df[df["target_laps_remaining"].isna()
+            | (df["target_laps_remaining"] > 0)].copy()
+
     # Split kronologis sesuai laporan: train <=2023, val 2024, test 2025
     df["split"] = np.where(df["season"] <= 2023, "train",
                            np.where(df["season"] == 2024, "val", "test"))
@@ -501,14 +553,14 @@ def bangun_dataset() -> pd.DataFrame:
     df = df.sort_values(["season", "round", "driver_code", "lap_number"]).reset_index(drop=True)
 
     # 1) File inference: SEMUA lap (dipakai API replay, termasuk stint terakhir)
-    out_inf = PROCESSED / "lap_inference.parquet"
+    out_inf = out_root / "lap_inference.parquet"
     df.to_parquet(out_inf)
     logger.info("Dataset inference tersimpan: %s (%d baris)", out_inf, len(df))
 
     # 2) File training: hanya baris dengan target lengkap
     train_df = df[df["has_target"]].drop(columns=["has_target"]).copy()
     train_df["target_next_compound"] = train_df["target_next_compound"].astype(str)
-    out = PROCESSED / "lap_dataset.parquet"
+    out = out_root / "lap_dataset.parquet"
     train_df.to_parquet(out)
     logger.info("Dataset training tersimpan: %s (%d baris, kolom=%d)",
                 out, len(train_df), len(train_df.columns))
